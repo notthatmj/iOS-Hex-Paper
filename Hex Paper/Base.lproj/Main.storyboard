@@ -13,7 +13,7 @@
         <scene sceneID="odR-Of-87C">
             <objects>
                 <collectionViewController storyboardIdentifier="Documents" id="dch-b1-3yV" customClass="DocumentsViewController" customModule="Hex_Paper" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="aC9-z7-tPG">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="aC9-z7-tPG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,7 +39,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="32n-QP-ITd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GvD-kh-Y96"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GvD-kh-Y96">
+                            <connections>
+                                <segue destination="h0x-1I-1ZL" kind="show" id="fG4-rJ-CvH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="GvD-kh-Y96" id="IjT-ed-k54"/>
@@ -48,6 +52,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdY-sG-qzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1012" y="583.3583208395803"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eQO-Hm-VEg">
+            <objects>
+                <viewController id="h0x-1I-1ZL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hrL-gk-HxN"/>
+                        <viewControllerLayoutGuide type="bottom" id="lhl-YJ-hRg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SNA-rd-DGT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGv-OK-Q16" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1817" y="591"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QY1-dU-rV0">

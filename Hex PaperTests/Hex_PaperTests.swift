@@ -17,5 +17,5 @@ class Hex_PaperTests: XCTestCase {
         
         XCTAssertNotNil(SUT as? UINavigationController)
     }
-
+    
 }
