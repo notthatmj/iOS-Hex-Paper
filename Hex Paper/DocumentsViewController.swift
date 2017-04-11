@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DocumentsViewController.swift
 //  Hex Paper
 //
 //  Created by Michael Johnson on 4/11/17.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DocumentsViewController: UICollectionViewController {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

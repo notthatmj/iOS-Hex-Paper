@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		897E5CBD1E9D5BED00E39136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */; };
-		897E5CBF1E9D5BED00E39136 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CBE1E9D5BED00E39136 /* ViewController.swift */; };
+		897E5CBF1E9D5BED00E39136 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */; };
 		897E5CC21E9D5BED00E39136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897E5CC01E9D5BED00E39136 /* Main.storyboard */; };
 		897E5CC51E9D5BED00E39136 /* Hex_Paper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CC31E9D5BED00E39136 /* Hex_Paper.xcdatamodeld */; };
 		897E5CC71E9D5BED00E39136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897E5CC61E9D5BED00E39136 /* Assets.xcassets */; };
 		897E5CCA1E9D5BED00E39136 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897E5CC81E9D5BED00E39136 /* LaunchScreen.storyboard */; };
 		897E5CD51E9D5BED00E39136 /* Hex_PaperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CD41E9D5BED00E39136 /* Hex_PaperTests.swift */; };
+		897E5CE01E9D869200E39136 /* DocumentsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CDF1E9D869200E39136 /* DocumentsViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +30,7 @@
 /* Begin PBXFileReference section */
 		897E5CB91E9D5BED00E39136 /* Hex Paper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hex Paper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		897E5CBE1E9D5BED00E39136 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		897E5CC11E9D5BED00E39136 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		897E5CC41E9D5BED00E39136 /* Hex_Paper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hex_Paper.xcdatamodel; sourceTree = "<group>"; };
 		897E5CC61E9D5BED00E39136 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		897E5CD01E9D5BED00E39136 /* Hex PaperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hex PaperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		897E5CD41E9D5BED00E39136 /* Hex_PaperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex_PaperTests.swift; sourceTree = "<group>"; };
 		897E5CD61E9D5BED00E39136 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		897E5CDF1E9D869200E39136 /* DocumentsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */,
-				897E5CBE1E9D5BED00E39136 /* ViewController.swift */,
+				897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */,
 				897E5CC01E9D5BED00E39136 /* Main.storyboard */,
 				897E5CC61E9D5BED00E39136 /* Assets.xcassets */,
 				897E5CC81E9D5BED00E39136 /* LaunchScreen.storyboard */,
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				897E5CD41E9D5BED00E39136 /* Hex_PaperTests.swift */,
+				897E5CDF1E9D869200E39136 /* DocumentsViewControllerTests.swift */,
 				897E5CD61E9D5BED00E39136 /* Info.plist */,
 			);
 			path = "Hex PaperTests";
@@ -204,7 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				897E5CBF1E9D5BED00E39136 /* ViewController.swift in Sources */,
+				897E5CBF1E9D5BED00E39136 /* DocumentsViewController.swift in Sources */,
 				897E5CC51E9D5BED00E39136 /* Hex_Paper.xcdatamodeld in Sources */,
 				897E5CBD1E9D5BED00E39136 /* AppDelegate.swift in Sources */,
 			);
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897E5CD51E9D5BED00E39136 /* Hex_PaperTests.swift in Sources */,
+				897E5CE01E9D869200E39136 /* DocumentsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +418,7 @@
 				897E5CDB1E9D5BED00E39136 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		897E5CDC1E9D5BED00E39136 /* Build configuration list for PBXNativeTarget "Hex PaperTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +427,7 @@
 				897E5CDE1E9D5BED00E39136 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
