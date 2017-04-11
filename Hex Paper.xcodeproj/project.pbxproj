@@ -15,6 +15,8 @@
 		897E5CCA1E9D5BED00E39136 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897E5CC81E9D5BED00E39136 /* LaunchScreen.storyboard */; };
 		897E5CD51E9D5BED00E39136 /* Hex_PaperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CD41E9D5BED00E39136 /* Hex_PaperTests.swift */; };
 		897E5CE01E9D869200E39136 /* DocumentsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CDF1E9D869200E39136 /* DocumentsViewControllerTests.swift */; };
+		897E5CE21E9DA10800E39136 /* DocumentsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */; };
+		897E5CE41E9DA19700E39136 /* DocumentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE31E9DA19700E39136 /* DocumentsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		897E5CD41E9D5BED00E39136 /* Hex_PaperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex_PaperTests.swift; sourceTree = "<group>"; };
 		897E5CD61E9D5BED00E39136 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		897E5CDF1E9D869200E39136 /* DocumentsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewControllerTests.swift; sourceTree = "<group>"; };
+		897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsControllerTests.swift; sourceTree = "<group>"; };
+		897E5CE31E9DA19700E39136 /* DocumentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 			children = (
 				897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */,
 				897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */,
+				897E5CE31E9DA19700E39136 /* DocumentsController.swift */,
 				897E5CC01E9D5BED00E39136 /* Main.storyboard */,
 				897E5CC61E9D5BED00E39136 /* Assets.xcassets */,
 				897E5CC81E9D5BED00E39136 /* LaunchScreen.storyboard */,
@@ -97,6 +102,7 @@
 			children = (
 				897E5CD41E9D5BED00E39136 /* Hex_PaperTests.swift */,
 				897E5CDF1E9D869200E39136 /* DocumentsViewControllerTests.swift */,
+				897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */,
 				897E5CD61E9D5BED00E39136 /* Info.plist */,
 			);
 			path = "Hex PaperTests";
@@ -209,6 +215,7 @@
 			files = (
 				897E5CBF1E9D5BED00E39136 /* DocumentsViewController.swift in Sources */,
 				897E5CC51E9D5BED00E39136 /* Hex_Paper.xcdatamodeld in Sources */,
+				897E5CE41E9DA19700E39136 /* DocumentsController.swift in Sources */,
 				897E5CBD1E9D5BED00E39136 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897E5CD51E9D5BED00E39136 /* Hex_PaperTests.swift in Sources */,
+				897E5CE21E9DA10800E39136 /* DocumentsControllerTests.swift in Sources */,
 				897E5CE01E9D869200E39136 /* DocumentsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
