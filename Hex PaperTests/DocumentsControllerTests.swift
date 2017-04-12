@@ -21,10 +21,15 @@ class FakeDocumentsViewController: DocumentsViewControllerProtocol {
 }
 
 class DocumentsControllerTests: XCTestCase {
+    var fakeModel: FakeModel!
+    var fakeViewController: FakeDocumentsViewController!
+    var SUT: DocumentsController!
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        fakeModel = FakeModel()
+        fakeViewController = FakeDocumentsViewController()
+        SUT = DocumentsController(model: fakeModel)
     }
     
     func testDocumentsController() {
@@ -41,10 +46,6 @@ class DocumentsControllerTests: XCTestCase {
     }
     
     func testDocumentsViewControllerAddButtonWasTapped() {
-        let fakeModel = FakeModel()
-        let fakeViewController = FakeDocumentsViewController()
-        let SUT = DocumentsController(model: fakeModel)
-
         SUT.documentsViewControllerAddButtonWasTapped(fakeViewController)
         
         XCTAssert(fakeModel.createDocumentWasCalled)
