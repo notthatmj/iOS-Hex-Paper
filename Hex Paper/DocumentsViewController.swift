@@ -11,10 +11,12 @@ import UIKit
 protocol DocumentsViewControllerDelegate {
     func documentsViewControllerAddButtonWasTapped(_ viewController:DocumentsViewControllerProtocol)
     var documentsCount: Int { get }
+    var viewController: DocumentsViewController? { get set }
 }
 
 protocol DocumentsViewControllerProtocol {
     func segueToDocumentScene()
+    func refreshDocumentData()
 }
 
 class DocumentsViewController: UICollectionViewController, DocumentsViewControllerProtocol {
@@ -29,6 +31,7 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = DocumentsController()
+        delegate.viewController = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,5 +43,15 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
         self.performSegue(withIdentifier: "addDocument", sender: self)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return delegate.documentsCount
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+    }
+    
+    func refreshDocumentData() {
+    }
 }
 

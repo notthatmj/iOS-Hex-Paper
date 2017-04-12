@@ -22,6 +22,10 @@ class FakeDocumentsViewController: DocumentsViewControllerProtocol {
     func segueToDocumentScene() {
         segueToDocumentSceneWasCalled = true
     }
+    var refreshDocumentDataWasCalled = false
+    func refreshDocumentData() {
+        refreshDocumentDataWasCalled = true
+    }
 }
 
 class DocumentsControllerTests: XCTestCase {
@@ -53,6 +57,7 @@ class DocumentsControllerTests: XCTestCase {
         SUT.documentsViewControllerAddButtonWasTapped(fakeViewController)
         
         XCTAssert(fakeModel.createDocumentWasCalled)
+        XCTAssert(fakeViewController.refreshDocumentDataWasCalled)
         XCTAssert(fakeViewController.segueToDocumentSceneWasCalled)
     }
     

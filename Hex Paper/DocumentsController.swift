@@ -14,6 +14,8 @@ class DocumentsController: DocumentsViewControllerDelegate {
         return model.documentCount
     }
     
+    weak var viewController: DocumentsViewController?
+    
     var model: ModelLayerProtocol
     
     init(model: ModelLayerProtocol) {
@@ -26,6 +28,8 @@ class DocumentsController: DocumentsViewControllerDelegate {
     
     func documentsViewControllerAddButtonWasTapped(_ viewController: DocumentsViewControllerProtocol) {
         model.createDocument()
+        viewController.refreshDocumentData()
         viewController.segueToDocumentScene()
     }
+    
 }
