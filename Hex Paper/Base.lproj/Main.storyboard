@@ -42,7 +42,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="GvD-kh-Y96">
                             <connections>
                                 <action selector="addButtonAction:" destination="dch-b1-3yV" id="JtI-XB-z07"/>
-                                <segue destination="h0x-1I-1ZL" kind="show" id="fG4-rJ-CvH"/>
+                                <segue destination="h0x-1I-1ZL" kind="show" identifier="addDocument" id="fG4-rJ-CvH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

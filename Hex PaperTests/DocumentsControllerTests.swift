@@ -14,6 +14,7 @@ class FakeModel: ModelLayerProtocol {
     func createDocument() {
         createDocumentWasCalled = true
     }
+    var documentCount: Int = 0
 }
 
 class FakeDocumentsViewController: DocumentsViewControllerProtocol {

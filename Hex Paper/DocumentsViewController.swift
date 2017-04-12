@@ -36,6 +36,7 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
     }
 
     func segueToDocumentScene() {
+        self.performSegue(withIdentifier: "addDocument", sender: self)
     }
 }
 

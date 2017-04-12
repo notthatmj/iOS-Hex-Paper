@@ -9,11 +9,14 @@
 import Foundation
 
 protocol ModelLayerProtocol {
+    var documentCount: Int {get}
     func createDocument()
 }
 
 class ModelLayer: ModelLayerProtocol {
+    var documentCount: Int = 0
+    
     func createDocument() {
-        
+        documentCount += 1
     }
 }

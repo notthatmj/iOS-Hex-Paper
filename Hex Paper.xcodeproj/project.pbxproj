@@ -18,6 +18,7 @@
 		897E5CE21E9DA10800E39136 /* DocumentsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */; };
 		897E5CE41E9DA19700E39136 /* DocumentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE31E9DA19700E39136 /* DocumentsController.swift */; };
 		897E5CE61E9E861400E39136 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE51E9E861400E39136 /* ModelLayer.swift */; };
+		897E5CEA1E9EA89500E39136 /* ModelLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsControllerTests.swift; sourceTree = "<group>"; };
 		897E5CE31E9DA19700E39136 /* DocumentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsController.swift; sourceTree = "<group>"; };
 		897E5CE51E9E861400E39136 /* ModelLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
+		897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelLayerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				897E5CD41E9D5BED00E39136 /* Hex_PaperTests.swift */,
 				897E5CDF1E9D869200E39136 /* DocumentsViewControllerTests.swift */,
 				897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */,
+				897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */,
 				897E5CD61E9D5BED00E39136 /* Info.plist */,
 			);
 			path = "Hex PaperTests";
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897E5CD51E9D5BED00E39136 /* Hex_PaperTests.swift in Sources */,
+				897E5CEA1E9EA89500E39136 /* ModelLayerTests.swift in Sources */,
 				897E5CE21E9DA10800E39136 /* DocumentsControllerTests.swift in Sources */,
 				897E5CE01E9D869200E39136 /* DocumentsViewControllerTests.swift in Sources */,
 			);
