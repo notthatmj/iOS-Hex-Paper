@@ -9,12 +9,16 @@
 import UIKit
 
 protocol DocumentsViewControllerDelegate {
-    func documentsViewControllerAddButtonWasTapped(_ viewController:DocumentsViewController)
+    func documentsViewControllerAddButtonWasTapped(_ viewController:DocumentsViewControllerProtocol)
 }
 
-class DocumentsViewController: UICollectionViewController {
-    var delegate: DocumentsViewControllerDelegate = DocumentsController()
+protocol DocumentsViewControllerProtocol {
+        
+}
 
+class DocumentsViewController: UICollectionViewController, DocumentsViewControllerProtocol {
+    var delegate: DocumentsViewControllerDelegate!
+    
     @IBOutlet weak var addButton: UIBarButtonItem!
 
     @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
@@ -23,7 +27,7 @@ class DocumentsViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        delegate = DocumentsController()
     }
 
     override func didReceiveMemoryWarning() {
