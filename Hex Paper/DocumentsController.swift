@@ -9,6 +9,11 @@
 import Foundation
 
 class DocumentsController: DocumentsViewControllerDelegate {
+    
+    var documentsCount: Int {
+        return model.documentCount
+    }
+    
     var model: ModelLayerProtocol
     
     init(model: ModelLayerProtocol) {

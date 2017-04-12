@@ -10,6 +10,7 @@ import UIKit
 
 protocol DocumentsViewControllerDelegate {
     func documentsViewControllerAddButtonWasTapped(_ viewController:DocumentsViewControllerProtocol)
+    var documentsCount: Int { get }
 }
 
 protocol DocumentsViewControllerProtocol {
@@ -38,5 +39,6 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
     func segueToDocumentScene() {
         self.performSegue(withIdentifier: "addDocument", sender: self)
     }
+    
 }
 

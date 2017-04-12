@@ -55,4 +55,10 @@ class DocumentsControllerTests: XCTestCase {
         XCTAssert(fakeModel.createDocumentWasCalled)
         XCTAssert(fakeViewController.segueToDocumentSceneWasCalled)
     }
+    
+    func testDocumentCount() {
+        XCTAssertEqual(SUT.documentsCount,0)
+        fakeModel.documentCount = 1
+        XCTAssertEqual(SUT.documentsCount,1)
+    }
 }
