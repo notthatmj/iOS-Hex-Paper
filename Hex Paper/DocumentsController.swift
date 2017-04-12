@@ -21,6 +21,6 @@ class DocumentsController: DocumentsViewControllerDelegate {
     
     func documentsViewControllerAddButtonWasTapped(_ viewController: DocumentsViewControllerProtocol) {
         model.createDocument()
+        viewController.segueToDocumentScene()
     }
-    
 }

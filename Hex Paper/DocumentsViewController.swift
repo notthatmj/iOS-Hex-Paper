@@ -13,7 +13,7 @@ protocol DocumentsViewControllerDelegate {
 }
 
 protocol DocumentsViewControllerProtocol {
-        
+    func segueToDocumentScene()
 }
 
 class DocumentsViewController: UICollectionViewController, DocumentsViewControllerProtocol {
@@ -35,6 +35,7 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
         // Dispose of any resources that can be recreated.
     }
 
-
+    func segueToDocumentScene() {
+    }
 }
 

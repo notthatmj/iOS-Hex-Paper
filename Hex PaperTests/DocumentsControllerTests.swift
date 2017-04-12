@@ -17,7 +17,10 @@ class FakeModel: ModelLayerProtocol {
 }
 
 class FakeDocumentsViewController: DocumentsViewControllerProtocol {
-    
+    var segueToDocumentSceneWasCalled = false
+    func segueToDocumentScene() {
+        segueToDocumentSceneWasCalled = true
+    }
 }
 
 class DocumentsControllerTests: XCTestCase {
@@ -49,6 +52,6 @@ class DocumentsControllerTests: XCTestCase {
         SUT.documentsViewControllerAddButtonWasTapped(fakeViewController)
         
         XCTAssert(fakeModel.createDocumentWasCalled)
-        
+        XCTAssert(fakeViewController.segueToDocumentSceneWasCalled)
     }
 }
