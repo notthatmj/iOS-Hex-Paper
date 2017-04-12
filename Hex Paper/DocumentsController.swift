@@ -8,16 +8,6 @@
 
 import Foundation
 
-protocol ModelLayerProtocol {
-    func createDocument()
-}
-
-class ModelLayer: ModelLayerProtocol {
-    func createDocument() {
-        
-    }
-}
-
 class DocumentsController: DocumentsViewControllerDelegate {
     var model: ModelLayerProtocol
     
