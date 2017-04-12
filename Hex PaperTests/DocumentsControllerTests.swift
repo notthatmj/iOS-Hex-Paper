@@ -54,7 +54,8 @@ class DocumentsControllerTests: XCTestCase {
     }
     
     func testDocumentsViewControllerAddButtonWasTapped() {
-        SUT.documentsViewControllerAddButtonWasTapped(fakeViewController)
+        SUT.viewController = fakeViewController
+        SUT.documentsViewControllerAddButtonWasTapped()
         
         XCTAssert(fakeModel.createDocumentWasCalled)
         XCTAssert(fakeViewController.refreshDocumentDataWasCalled)

@@ -9,12 +9,12 @@
 import UIKit
 
 protocol DocumentsViewControllerDelegate {
-    func documentsViewControllerAddButtonWasTapped(_ viewController:DocumentsViewControllerProtocol)
+    func documentsViewControllerAddButtonWasTapped()
     var documentsCount: Int { get }
-    var viewController: DocumentsViewController? { get set }
+    var viewController: DocumentsViewControllerProtocol? { get set }
 }
 
-protocol DocumentsViewControllerProtocol {
+protocol DocumentsViewControllerProtocol: class {
     func segueToDocumentScene()
     func refreshDocumentData()
 }
@@ -25,7 +25,7 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
     @IBOutlet weak var addButton: UIBarButtonItem!
 
     @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
-        delegate.documentsViewControllerAddButtonWasTapped(self)
+        delegate.documentsViewControllerAddButtonWasTapped()
     }
     
     override func viewDidLoad() {
@@ -52,6 +52,7 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
     }
     
     func refreshDocumentData() {
+        self.collectionView?.reloadData()
     }
 }
 
