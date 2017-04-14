@@ -9,7 +9,7 @@
 import XCTest
 @testable import Hex_Paper
 
-class FakeModel: ModelLayerProtocol {
+class FakeModel: ModelLayer {
     var createDocumentWasCalled = false
     func createDocument() {
         createDocumentWasCalled = true
@@ -38,7 +38,6 @@ class DocumentsControllerTests: XCTestCase {
         fakeModel = FakeModel()
         fakeScene = FakeDocumentsScene()
         SUT = DocumentsController(model: fakeModel)
-//        SUT.scene = fakeScene
     }
     
     func testModel() {

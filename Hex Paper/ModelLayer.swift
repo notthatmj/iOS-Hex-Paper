@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol ModelLayerProtocol {
+protocol ModelLayer {
     var documentCount: Int {get}
     func createDocument()
 }
 
-class ModelLayer: ModelLayerProtocol {
+class SimpleModelLayer: ModelLayer {
     var documentCount: Int = 0
     
     func createDocument() {

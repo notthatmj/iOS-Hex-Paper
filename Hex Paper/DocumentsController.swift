@@ -14,14 +14,14 @@ class DocumentsController: DocumentsSceneDelegate {
         return model.documentCount
     }
     
-    var model: ModelLayerProtocol
+    var model: ModelLayer
     
-    init(model: ModelLayerProtocol) {
+    init(model: ModelLayer) {
         self.model = model
     }
     
     convenience init() {
-        self.init(model: ModelLayer())
+        self.init(model: SimpleModelLayer())
     }
     
     func documentsSceneAddButtonWasTapped(_ scene: DocumentsScene) {
