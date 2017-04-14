@@ -18,9 +18,10 @@ class FakeModel: ModelLayer {
 }
 
 class FakeDocumentsScene: DocumentsScene {
-    var segueToDocumentSceneWasCalled = false
-    func segueToDocumentScene() {
-        segueToDocumentSceneWasCalled = true
+    var delegate: DocumentsSceneDelegate?
+    var segueToEditDocumentSceneWasCalled = false
+    func segueToEditDocumentScene() {
+        segueToEditDocumentSceneWasCalled = true
     }
     var refreshDocumentDataWasCalled = false
     func refreshDocumentData() {
@@ -52,7 +53,7 @@ class DocumentsControllerTests: XCTestCase {
         
         XCTAssert(fakeModel.createDocumentWasCalled)
         XCTAssert(fakeScene.refreshDocumentDataWasCalled)
-        XCTAssert(fakeScene.segueToDocumentSceneWasCalled)
+        XCTAssert(fakeScene.segueToEditDocumentSceneWasCalled)
     }
     
     func testDocumentCount() {

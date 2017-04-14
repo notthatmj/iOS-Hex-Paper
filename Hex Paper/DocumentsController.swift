@@ -27,7 +27,7 @@ class DocumentsController: DocumentsSceneDelegate {
     func documentsSceneAddButtonWasTapped(_ scene: DocumentsScene) {
         model.createDocument()
         scene.refreshDocumentData()
-        scene.segueToDocumentScene()
+        scene.segueToEditDocumentScene()
     }
     
 }

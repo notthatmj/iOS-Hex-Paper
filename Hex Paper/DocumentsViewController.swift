@@ -14,17 +14,18 @@ protocol DocumentsSceneDelegate {
 }
 
 protocol DocumentsScene: class {
-    func segueToDocumentScene()
+    var delegate: DocumentsSceneDelegate? {get set}
+    func segueToEditDocumentScene()
     func refreshDocumentData()
 }
 
 class DocumentsViewController: UICollectionViewController {
 
-    var delegate: DocumentsSceneDelegate!
+    var delegate: DocumentsSceneDelegate?
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
-        delegate.documentsSceneAddButtonWasTapped(self)
+        delegate?.documentsSceneAddButtonWasTapped(self)
     }
     
     override func viewDidLoad() {
@@ -34,9 +35,10 @@ class DocumentsViewController: UICollectionViewController {
 
 }
 
+// Scene methods
 extension DocumentsViewController: DocumentsScene {
     
-    func segueToDocumentScene() {
+    func segueToEditDocumentScene() {
         self.performSegue(withIdentifier: "addDocument", sender: self)
     }
     
@@ -50,7 +52,7 @@ extension DocumentsViewController: DocumentsScene {
 extension DocumentsViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return delegate.documentsCount
+        return delegate?.documentsCount ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
