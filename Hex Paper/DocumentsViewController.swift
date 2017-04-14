@@ -8,29 +8,27 @@
 
 import UIKit
 
-protocol DocumentsViewControllerDelegate {
-    func documentsViewControllerAddButtonWasTapped()
+protocol DocumentsSceneDelegate {
+    func documentsSceneAddButtonWasTapped(_ scene: DocumentsScene)
     var documentsCount: Int { get }
-    var viewController: DocumentsViewControllerProtocol? { get set }
 }
 
-protocol DocumentsViewControllerProtocol: class {
+protocol DocumentsScene: class {
     func segueToDocumentScene()
     func refreshDocumentData()
 }
 
-class DocumentsViewController: UICollectionViewController, DocumentsViewControllerProtocol {
-    var delegate: DocumentsViewControllerDelegate!
+class DocumentsViewController: UICollectionViewController, DocumentsScene {
+    var delegate: DocumentsSceneDelegate!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
-        delegate.documentsViewControllerAddButtonWasTapped()
+        delegate.documentsSceneAddButtonWasTapped(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = DocumentsController()
-        delegate.viewController = self
     }
 
     func segueToDocumentScene() {

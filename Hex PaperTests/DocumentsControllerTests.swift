@@ -17,7 +17,7 @@ class FakeModel: ModelLayerProtocol {
     var documentCount: Int = 0
 }
 
-class FakeDocumentsViewController: DocumentsViewControllerProtocol {
+class FakeDocumentsScene: DocumentsScene {
     var segueToDocumentSceneWasCalled = false
     func segueToDocumentScene() {
         segueToDocumentSceneWasCalled = true
@@ -30,15 +30,15 @@ class FakeDocumentsViewController: DocumentsViewControllerProtocol {
 
 class DocumentsControllerTests: XCTestCase {
     var fakeModel: FakeModel!
-    var fakeViewController: FakeDocumentsViewController!
+    var fakeScene: FakeDocumentsScene!
     var SUT: DocumentsController!
     
     override func setUp() {
         super.setUp()
         fakeModel = FakeModel()
-        fakeViewController = FakeDocumentsViewController()
+        fakeScene = FakeDocumentsScene()
         SUT = DocumentsController(model: fakeModel)
-        SUT.viewController = fakeViewController
+//        SUT.scene = fakeScene
     }
     
     func testModel() {
@@ -48,12 +48,12 @@ class DocumentsControllerTests: XCTestCase {
         XCTAssert(SUT.model as? FakeModel === fakeModel)
     }
     
-    func testDocumentsViewControllerAddButtonWasTapped() {
-        SUT.documentsViewControllerAddButtonWasTapped()
+    func testDocumentsSceneAddButtonWasTapped() {
+        SUT.documentsSceneAddButtonWasTapped(fakeScene)
         
         XCTAssert(fakeModel.createDocumentWasCalled)
-        XCTAssert(fakeViewController.refreshDocumentDataWasCalled)
-        XCTAssert(fakeViewController.segueToDocumentSceneWasCalled)
+        XCTAssert(fakeScene.refreshDocumentDataWasCalled)
+        XCTAssert(fakeScene.segueToDocumentSceneWasCalled)
     }
     
     func testDocumentCount() {

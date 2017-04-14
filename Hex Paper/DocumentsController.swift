@@ -8,13 +8,13 @@
 
 import Foundation
 
-class DocumentsController: DocumentsViewControllerDelegate {
+class DocumentsController: DocumentsSceneDelegate {
     
     var documentsCount: Int {
         return model.documentCount
     }
     
-    weak var viewController: DocumentsViewControllerProtocol?
+//    weak var scene: DocumentsScene?
     
     var model: ModelLayerProtocol
     
@@ -26,10 +26,10 @@ class DocumentsController: DocumentsViewControllerDelegate {
         self.init(model: ModelLayer())
     }
     
-    func documentsViewControllerAddButtonWasTapped() {
+    func documentsSceneAddButtonWasTapped(_ scene: DocumentsScene) {
         model.createDocument()
-        viewController?.refreshDocumentData()
-        viewController?.segueToDocumentScene()
+        scene.refreshDocumentData()
+        scene.segueToDocumentScene()
     }
     
 }
