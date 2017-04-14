@@ -21,9 +21,8 @@ protocol DocumentsViewControllerProtocol: class {
 
 class DocumentsViewController: UICollectionViewController, DocumentsViewControllerProtocol {
     var delegate: DocumentsViewControllerDelegate!
-    
     @IBOutlet weak var addButton: UIBarButtonItem!
-
+    
     @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
         delegate.documentsViewControllerAddButtonWasTapped()
     }
@@ -38,6 +37,15 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
         self.performSegue(withIdentifier: "addDocument", sender: self)
     }
     
+    func refreshDocumentData() {
+        self.collectionView?.reloadData()
+    }
+
+}
+
+// Data source methods
+extension DocumentsViewController {
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return delegate.documentsCount
     }
@@ -45,9 +53,4 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
     }
-    
-    func refreshDocumentData() {
-        self.collectionView?.reloadData()
-    }
 }
-
