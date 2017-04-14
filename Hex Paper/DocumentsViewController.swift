@@ -34,11 +34,6 @@ class DocumentsViewController: UICollectionViewController, DocumentsViewControll
         delegate.viewController = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func segueToDocumentScene() {
         self.performSegue(withIdentifier: "addDocument", sender: self)
     }
