@@ -18,7 +18,8 @@ protocol DocumentsScene: class {
     func refreshDocumentData()
 }
 
-class DocumentsViewController: UICollectionViewController, DocumentsScene {
+class DocumentsViewController: UICollectionViewController {
+
     var delegate: DocumentsSceneDelegate!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
@@ -31,6 +32,10 @@ class DocumentsViewController: UICollectionViewController, DocumentsScene {
         delegate = DocumentsController()
     }
 
+}
+
+extension DocumentsViewController: DocumentsScene {
+    
     func segueToDocumentScene() {
         self.performSegue(withIdentifier: "addDocument", sender: self)
     }
@@ -38,7 +43,7 @@ class DocumentsViewController: UICollectionViewController, DocumentsScene {
     func refreshDocumentData() {
         self.collectionView?.reloadData()
     }
-
+    
 }
 
 // Data source methods
@@ -51,4 +56,5 @@ extension DocumentsViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
     }
+    
 }

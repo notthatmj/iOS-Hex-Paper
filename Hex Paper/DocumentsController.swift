@@ -14,8 +14,6 @@ class DocumentsController: DocumentsSceneDelegate {
         return model.documentCount
     }
     
-//    weak var scene: DocumentsScene?
-    
     var model: ModelLayerProtocol
     
     init(model: ModelLayerProtocol) {
