@@ -16,6 +16,8 @@ protocol DocumentsSceneDelegate {
 
 protocol DocumentsScene: class {
     var delegate: DocumentsSceneDelegate? {get set}
+    var indexPathsForSelectedItems: [IndexPath]? { get }
+    func deleteItems(at indexPaths: [IndexPath])
     func segueToEditDocumentScene()
     func refreshDocumentData()
 }
@@ -45,12 +47,22 @@ class DocumentsViewController: UICollectionViewController {
 // Scene methods
 extension DocumentsViewController: DocumentsScene {
     
+    var indexPathsForSelectedItems: [IndexPath]? {
+        get {
+            return self.collectionView?.indexPathsForSelectedItems
+        }
+    }
+    
     func segueToEditDocumentScene() {
         self.performSegue(withIdentifier: "addDocument", sender: self)
     }
     
     func refreshDocumentData() {
         self.collectionView?.reloadData()
+    }
+    
+    func deleteItems(at indexPaths: [IndexPath]) {
+        self.collectionView?.deleteItems(at: indexPaths)
     }
     
 }
@@ -76,7 +88,9 @@ extension DocumentsViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.contentView.backgroundColor = UIColor.magenta
+        return cell
     }
     
 }

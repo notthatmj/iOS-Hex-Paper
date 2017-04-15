@@ -35,6 +35,10 @@ extension DocumentsController: DocumentsSceneDelegate {
     }
     
     func documentsSceneTrashButtonWasTapped(_ scene: DocumentsScene) {
+        if let selectedIndexPaths = scene.indexPathsForSelectedItems {
+            model.deleteItems(at: selectedIndexPaths)
+            scene.deleteItems(at: selectedIndexPaths)
+        }
     }
     
 }

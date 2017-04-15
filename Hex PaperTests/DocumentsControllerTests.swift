@@ -14,6 +14,7 @@ class FakeModel: ModelLayer {
     func createDocument() {
         createDocumentWasCalled = true
     }
+    func deleteItems(at indexPaths: [IndexPath]) {}
     var documentCount: Int = 0
 }
 
@@ -27,6 +28,8 @@ class FakeDocumentsScene: DocumentsScene {
     func refreshDocumentData() {
         refreshDocumentDataWasCalled = true
     }
+    var indexPathsForSelectedItems: [IndexPath]? = nil
+    func deleteItems(at indexPaths: [IndexPath]) {}
 }
 
 class DocumentsControllerTests: XCTestCase {

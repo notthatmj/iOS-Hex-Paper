@@ -11,6 +11,7 @@ import Foundation
 protocol ModelLayer {
     var documentCount: Int {get}
     func createDocument()
+    func deleteItems(at indexPaths:[IndexPath])
 }
 
 class SimpleModelLayer: ModelLayer {
@@ -18,5 +19,9 @@ class SimpleModelLayer: ModelLayer {
     
     func createDocument() {
         documentCount += 1
+    }
+    
+    func deleteItems(at indexPaths: [IndexPath]) {
+        documentCount -= indexPaths.count
     }
 }
