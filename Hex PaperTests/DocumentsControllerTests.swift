@@ -14,7 +14,10 @@ class FakeModel: ModelLayer {
     func createDocument() {
         createDocumentWasCalled = true
     }
-    func deleteItems(at indexPaths: [IndexPath]) {}
+    var deletedItems: [IndexPath]?
+    func deleteItems(at indexPaths: [IndexPath]) {
+        deletedItems = indexPaths
+    }
     var documentCount: Int = 0
 }
 
@@ -29,7 +32,10 @@ class FakeDocumentsScene: DocumentsScene {
         refreshDocumentDataWasCalled = true
     }
     var indexPathsForSelectedItems: [IndexPath]? = nil
-    func deleteItems(at indexPaths: [IndexPath]) {}
+    var deletedItems: [IndexPath]?
+    func deleteItems(at indexPaths: [IndexPath]) {
+        deletedItems = indexPaths
+    }
 }
 
 class DocumentsControllerTests: XCTestCase {
@@ -57,6 +63,25 @@ class DocumentsControllerTests: XCTestCase {
         XCTAssert(fakeModel.createDocumentWasCalled)
         XCTAssert(fakeScene.refreshDocumentDataWasCalled)
         XCTAssert(fakeScene.segueToEditDocumentSceneWasCalled)
+    }
+    
+    func testDocumentsSceneTrashButtonWasTapped() {
+        // Setup
+        let testPaths = [IndexPath(row: 1, section: 0), IndexPath(row: 2, section: 0)]
+        fakeScene.indexPathsForSelectedItems = testPaths
+        
+        // Run
+        SUT.documentsSceneTrashButtonWasTapped(fakeScene)
+        
+        // Verify
+        XCTAssertNotNil(fakeModel.deletedItems)
+        if let deletedItems = fakeModel.deletedItems {
+            XCTAssertEqual(deletedItems, testPaths)
+        }
+        XCTAssertNotNil(fakeScene.deletedItems)
+        if let deletedItems = fakeScene.deletedItems {
+            XCTAssertEqual(deletedItems, testPaths)
+        }
     }
     
     func testDocumentCount() {
