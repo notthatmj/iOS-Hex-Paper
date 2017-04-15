@@ -24,6 +24,10 @@ protocol DocumentsScene: class {
 
 class DocumentsViewController: UICollectionViewController {
 
+    let borderColor = UIColor(colorLiteralRed: 0.220, green: 0.506, blue: 0.153, alpha: 1.0).cgColor
+    let borderWidth: CGFloat = 1.0
+    let selectedBorderWidth: CGFloat = 3.0
+
     var delegate: DocumentsSceneDelegate?
     @IBOutlet weak var addButton: UIBarButtonItem!
     
@@ -71,12 +75,12 @@ extension DocumentsViewController: DocumentsScene {
 extension DocumentsViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = self.collectionView?.cellForItem(at: indexPath)
-        cell?.contentView.backgroundColor = UIColor.brown
+        cell?.layer.borderWidth = selectedBorderWidth
     }
 
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = self.collectionView?.cellForItem(at: indexPath)
-        cell?.contentView.backgroundColor = UIColor.magenta
+        cell?.layer.borderWidth = borderWidth
     }
 }
 
@@ -89,7 +93,8 @@ extension DocumentsViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.contentView.backgroundColor = UIColor.magenta
+        cell.layer.borderWidth = borderWidth
+        cell.layer.borderColor = borderColor
         return cell
     }
     
