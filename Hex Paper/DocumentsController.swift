@@ -8,11 +8,7 @@
 
 import Foundation
 
-class DocumentsController: DocumentsSceneDelegate {
-    
-    var documentsCount: Int {
-        return model.documentCount
-    }
+class DocumentsController {
     
     var model: ModelLayer
     
@@ -24,10 +20,21 @@ class DocumentsController: DocumentsSceneDelegate {
         self.init(model: SimpleModelLayer())
     }
     
+}
+
+extension DocumentsController: DocumentsSceneDelegate {
+
+    var documentsCount: Int {
+        return model.documentCount
+    }
+    
     func documentsSceneAddButtonWasTapped(_ scene: DocumentsScene) {
         model.createDocument()
         scene.refreshDocumentData()
         scene.segueToEditDocumentScene()
+    }
+    
+    func documentsSceneTrashButtonWasTapped(_ scene: DocumentsScene) {
     }
     
 }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol DocumentsSceneDelegate {
     func documentsSceneAddButtonWasTapped(_ scene: DocumentsScene)
+    func documentsSceneTrashButtonWasTapped(_ scene: DocumentsScene)
     var documentsCount: Int { get }
 }
 
@@ -28,6 +29,10 @@ class DocumentsViewController: UICollectionViewController {
         delegate?.documentsSceneAddButtonWasTapped(self)
     }
     
+    @IBAction func trashButtonAction(_ sender: UIBarButtonItem) {
+        delegate?.documentsSceneTrashButtonWasTapped(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = DocumentsController()
