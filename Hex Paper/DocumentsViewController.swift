@@ -31,6 +31,8 @@ class DocumentsViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = DocumentsController()
+        self.collectionView?.allowsSelection = true
+        self.collectionView?.allowsMultipleSelection = true
     }
 
 }
@@ -46,6 +48,19 @@ extension DocumentsViewController: DocumentsScene {
         self.collectionView?.reloadData()
     }
     
+}
+
+// Delegate methods 
+extension DocumentsViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = self.collectionView?.cellForItem(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.brown
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = self.collectionView?.cellForItem(at: indexPath)
+        cell?.contentView.backgroundColor = UIColor.magenta
+    }
 }
 
 // Data source methods
