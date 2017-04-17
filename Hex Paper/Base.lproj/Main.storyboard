@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -40,18 +41,20 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="32n-QP-ITd">
-                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="Eqo-tZ-qGq">
-                            <color key="tintColor" red="0.2196078431372549" green="0.50588235294117645" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="trashButtonAction:" destination="dch-b1-3yV" id="Di2-Zj-oZg"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GvD-kh-Y96">
-                            <color key="tintColor" red="0.2196078431372549" green="0.50588235294117645" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="addButtonAction:" destination="dch-b1-3yV" id="JtI-XB-z07"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="LoX-ZZ-Cm9">
+                                <color key="tintColor" red="0.2196078431372549" green="0.50588235294117645" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="editButtonAction:" destination="dch-b1-3yV" id="xrU-2V-ihe"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="GvD-kh-Y96">
+                                <color key="tintColor" red="0.2196078431372549" green="0.50588235294117645" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="addButtonAction:" destination="dch-b1-3yV" id="JtI-XB-z07"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="GvD-kh-Y96" id="IjT-ed-k54"/>

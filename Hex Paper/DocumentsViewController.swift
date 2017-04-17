@@ -28,6 +28,9 @@ class DocumentsViewController: UICollectionViewController {
     let borderWidth: CGFloat = 1.0
     let selectedBorderWidth: CGFloat = 3.0
 
+    private var initialRightBarButtonItems: [UIBarButtonItem]?
+    private var initialLeftBarButtonItems: [UIBarButtonItem]?
+    
     var delegate: DocumentsSceneDelegate?
     @IBOutlet weak var addButton: UIBarButtonItem!
     
@@ -38,12 +41,44 @@ class DocumentsViewController: UICollectionViewController {
     @IBAction func trashButtonAction(_ sender: UIBarButtonItem) {
         delegate?.documentsSceneTrashButtonWasTapped(self)
     }
+    
+    @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
+        self.collectionView?.deselectItem(at: IndexPath.init(row: 0, section: 0), animated: true)
+        for indexPath in indexPathsForSelectedItems ?? [] {
+            let cell = self.collectionView?.cellForItem(at: indexPath)
+            cell?.layer.borderWidth = borderWidth
+        }
+        enterStandardMode()
+    }
 
+    @IBAction func editButtonAction(_ sender: UIBarButtonItem) {
+        self.enterSelectionMode()
+    }
+
+    private func enterSelectionMode() {
+        initialRightBarButtonItems = navigationItem.rightBarButtonItems
+        initialLeftBarButtonItems = navigationItem.leftBarButtonItems
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(DocumentsViewController.doneButtonAction))
+        navigationItem.setRightBarButtonItems([doneButton], animated: true)
+        
+        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(DocumentsViewController.trashButtonAction))
+        navigationItem.setLeftBarButtonItems([trashButton], animated: true)
+        
+        self.collectionView?.allowsSelection = true
+        self.collectionView?.allowsMultipleSelection = true
+    }
+
+    private func enterStandardMode() {
+        self.collectionView?.allowsSelection = false
+        navigationItem.setRightBarButtonItems(initialRightBarButtonItems, animated: true)
+        navigationItem.setLeftBarButtonItems(initialLeftBarButtonItems, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = DocumentsController()
-        self.collectionView?.allowsSelection = true
-        self.collectionView?.allowsMultipleSelection = true
+        self.collectionView?.allowsSelection = false
     }
 
 }
