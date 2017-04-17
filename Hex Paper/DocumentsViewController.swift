@@ -28,9 +28,6 @@ class DocumentsViewController: UICollectionViewController {
     let borderWidth: CGFloat = 1.0
     let selectedBorderWidth: CGFloat = 3.0
 
-    private var initialRightBarButtonItems: [UIBarButtonItem]?
-    private var initialLeftBarButtonItems: [UIBarButtonItem]?
-    
     var delegate: DocumentsSceneDelegate?
     @IBOutlet weak var addButton: UIBarButtonItem!
     
@@ -43,44 +40,48 @@ class DocumentsViewController: UICollectionViewController {
     }
     
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
-        self.collectionView?.deselectItem(at: IndexPath.init(row: 0, section: 0), animated: true)
-        for indexPath in indexPathsForSelectedItems ?? [] {
-            let cell = self.collectionView?.cellForItem(at: indexPath)
-            cell?.layer.borderWidth = borderWidth
-        }
-        enterStandardMode()
+        selectionMode = false
     }
 
     @IBAction func editButtonAction(_ sender: UIBarButtonItem) {
-        self.enterSelectionMode()
-    }
-
-    private func enterSelectionMode() {
-        initialRightBarButtonItems = navigationItem.rightBarButtonItems
-        initialLeftBarButtonItems = navigationItem.leftBarButtonItems
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(DocumentsViewController.doneButtonAction))
-        navigationItem.setRightBarButtonItems([doneButton], animated: true)
-        
-        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(DocumentsViewController.trashButtonAction))
-        navigationItem.setLeftBarButtonItems([trashButton], animated: true)
-        
-        self.collectionView?.allowsSelection = true
-        self.collectionView?.allowsMultipleSelection = true
-    }
-
-    private func enterStandardMode() {
-        self.collectionView?.allowsSelection = false
-        navigationItem.setRightBarButtonItems(initialRightBarButtonItems, animated: true)
-        navigationItem.setLeftBarButtonItems(initialLeftBarButtonItems, animated: true)
+        selectionMode = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = DocumentsController()
-        self.collectionView?.allowsSelection = false
+        collectionView?.allowsSelection = false
+        initialRightBarButtonItems = navigationItem.rightBarButtonItems
+        initialLeftBarButtonItems = navigationItem.leftBarButtonItems
     }
 
+    private var initialRightBarButtonItems: [UIBarButtonItem]?
+    private var initialLeftBarButtonItems: [UIBarButtonItem]?
+    
+    private var selectionMode: Bool = false {
+        didSet {
+            if selectionMode {
+                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(DocumentsViewController.doneButtonAction))
+                navigationItem.setRightBarButtonItems([doneButton], animated: true)
+                
+                let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(DocumentsViewController.trashButtonAction))
+                navigationItem.setLeftBarButtonItems([trashButton], animated: true)
+                
+                collectionView?.allowsSelection = true
+                collectionView?.allowsMultipleSelection = true
+            } else {
+                collectionView?.deselectItem(at: IndexPath.init(row: 0, section: 0), animated: true)
+                for indexPath in indexPathsForSelectedItems ?? [] {
+                    let cell = collectionView?.cellForItem(at: indexPath)
+                    cell?.layer.borderWidth = borderWidth
+                }
+                collectionView?.allowsSelection = false
+                navigationItem.setRightBarButtonItems(initialRightBarButtonItems, animated: true)
+                navigationItem.setLeftBarButtonItems(initialLeftBarButtonItems, animated: true)
+            }
+        }
+    }
+    
 }
 
 // Scene methods
@@ -88,20 +89,20 @@ extension DocumentsViewController: DocumentsScene {
     
     var indexPathsForSelectedItems: [IndexPath]? {
         get {
-            return self.collectionView?.indexPathsForSelectedItems
+            return collectionView?.indexPathsForSelectedItems
         }
     }
     
     func segueToEditDocumentScene() {
-        self.performSegue(withIdentifier: "addDocument", sender: self)
+        performSegue(withIdentifier: "addDocument", sender: self)
     }
     
     func refreshDocumentData() {
-        self.collectionView?.reloadData()
+        collectionView?.reloadData()
     }
     
     func deleteItems(at indexPaths: [IndexPath]) {
-        self.collectionView?.deleteItems(at: indexPaths)
+        collectionView?.deleteItems(at: indexPaths)
     }
     
 }
@@ -109,12 +110,12 @@ extension DocumentsViewController: DocumentsScene {
 // Delegate methods 
 extension DocumentsViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = self.collectionView?.cellForItem(at: indexPath)
+        let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.borderWidth = selectedBorderWidth
     }
 
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = self.collectionView?.cellForItem(at: indexPath)
+        let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.borderWidth = borderWidth
     }
 }
