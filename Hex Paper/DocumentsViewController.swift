@@ -36,6 +36,7 @@ class DocumentsViewController: UICollectionViewController {
     }
     
     @IBAction func trashButtonAction(_ sender: UIBarButtonItem) {
+        trashButton.isEnabled = false
         delegate?.documentsSceneTrashButtonWasTapped(self)
     }
     
@@ -57,27 +58,36 @@ class DocumentsViewController: UICollectionViewController {
 
     private var initialRightBarButtonItems: [UIBarButtonItem]?
     private var initialLeftBarButtonItems: [UIBarButtonItem]?
+    fileprivate var trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
+                                      target: self,
+                                      action: #selector(DocumentsViewController.trashButtonAction))
+    fileprivate var doneButton: UIBarButtonItem?
     
     private var selectionMode: Bool = false {
         didSet {
             if selectionMode {
-                let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(DocumentsViewController.doneButtonAction))
+                let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                                 target: self,
+                                                 action: #selector(DocumentsViewController.doneButtonAction))
                 navigationItem.setRightBarButtonItems([doneButton], animated: true)
-                
-                let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(DocumentsViewController.trashButtonAction))
+                self.doneButton = doneButton
+                let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
+                                                  target: self,
+                                                  action: #selector(DocumentsViewController.trashButtonAction))
                 navigationItem.setLeftBarButtonItems([trashButton], animated: true)
+                trashButton.isEnabled = false
+                self.trashButton = trashButton
                 
                 collectionView?.allowsSelection = true
                 collectionView?.allowsMultipleSelection = true
             } else {
-                collectionView?.deselectItem(at: IndexPath.init(row: 0, section: 0), animated: true)
+                navigationItem.setRightBarButtonItems(initialRightBarButtonItems, animated: true)
+                navigationItem.setLeftBarButtonItems(initialLeftBarButtonItems, animated: true)
                 for indexPath in indexPathsForSelectedItems ?? [] {
                     let cell = collectionView?.cellForItem(at: indexPath)
                     cell?.layer.borderWidth = borderWidth
                 }
                 collectionView?.allowsSelection = false
-                navigationItem.setRightBarButtonItems(initialRightBarButtonItems, animated: true)
-                navigationItem.setLeftBarButtonItems(initialLeftBarButtonItems, animated: true)
             }
         }
     }
@@ -107,16 +117,23 @@ extension DocumentsViewController: DocumentsScene {
     
 }
 
-// Delegate methods 
+// UICollectionViewDelegate methods
 extension DocumentsViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        trashButton.isEnabled = true
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.borderWidth = selectedBorderWidth
+        
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.borderWidth = borderWidth
+        if collectionView.indexPathsForSelectedItems == nil ||
+            collectionView.indexPathsForSelectedItems?.count == 0 {
+            trashButton.isEnabled = false
+        }
     }
 }
 
