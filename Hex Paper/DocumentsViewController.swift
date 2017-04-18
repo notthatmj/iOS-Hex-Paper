@@ -41,11 +41,11 @@ class DocumentsViewController: UICollectionViewController {
     }
     
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
-        selectionMode = false
+        editMode = false
     }
 
     @IBAction func editButtonAction(_ sender: UIBarButtonItem) {
-        selectionMode = true
+        editMode = true
     }
     
     override func viewDidLoad() {
@@ -63,9 +63,9 @@ class DocumentsViewController: UICollectionViewController {
                                       action: #selector(DocumentsViewController.trashButtonAction))
     fileprivate var doneButton: UIBarButtonItem?
     
-    private var selectionMode: Bool = false {
+    private var editMode: Bool = false {
         didSet {
-            if selectionMode {
+            if editMode {
                 let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
                                                  target: self,
                                                  action: #selector(DocumentsViewController.doneButtonAction))
