@@ -51,7 +51,7 @@ class DocumentsViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = DocumentsController()
-        collectionView?.allowsSelection = false
+        collectionView?.allowsSelection = true
         initialRightBarButtonItems = navigationItem.rightBarButtonItems
         initialLeftBarButtonItems = navigationItem.leftBarButtonItems
     }
@@ -63,7 +63,7 @@ class DocumentsViewController: UICollectionViewController {
                                       action: #selector(DocumentsViewController.trashButtonAction))
     fileprivate var doneButton: UIBarButtonItem?
     
-    private var editMode: Bool = false {
+    fileprivate var editMode: Bool = false {
         didSet {
             if editMode {
                 let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
@@ -78,7 +78,6 @@ class DocumentsViewController: UICollectionViewController {
                 trashButton.isEnabled = false
                 self.trashButton = trashButton
                 
-                collectionView?.allowsSelection = true
                 collectionView?.allowsMultipleSelection = true
             } else {
                 navigationItem.setRightBarButtonItems(initialRightBarButtonItems, animated: true)
@@ -87,7 +86,7 @@ class DocumentsViewController: UICollectionViewController {
                     let cell = collectionView?.cellForItem(at: indexPath)
                     cell?.layer.borderWidth = borderWidth
                 }
-                collectionView?.allowsSelection = false
+                collectionView?.allowsMultipleSelection = false
             }
         }
     }
@@ -104,7 +103,7 @@ extension DocumentsViewController: DocumentsScene {
     }
     
     func segueToEditDocumentScene() {
-        performSegue(withIdentifier: "addDocument", sender: self)
+        performSegue(withIdentifier: "editDocument", sender: self)
     }
     
     func refreshDocumentData() {
@@ -120,20 +119,34 @@ extension DocumentsViewController: DocumentsScene {
 // UICollectionViewDelegate methods
 extension DocumentsViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        trashButton.isEnabled = true
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.borderWidth = selectedBorderWidth
-        
-        
+        if editMode {
+            trashButton.isEnabled = true
+            let cell = collectionView.cellForItem(at: indexPath)
+            cell?.layer.borderWidth = selectedBorderWidth
+        } else {
+            segueToEditDocumentScene()
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.borderWidth = borderWidth
-        if collectionView.indexPathsForSelectedItems == nil ||
-            collectionView.indexPathsForSelectedItems?.count == 0 {
-            trashButton.isEnabled = false
+        if editMode {
+            let cell = collectionView.cellForItem(at: indexPath)
+            cell?.layer.borderWidth = borderWidth
+            if collectionView.indexPathsForSelectedItems == nil ||
+                collectionView.indexPathsForSelectedItems?.count == 0 {
+                trashButton.isEnabled = false
+            }
         }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+            let reusableview =
+                collectionView.dequeueReusableSupplementaryView(ofKind:UICollectionElementKindSectionHeader,
+                                                                withReuseIdentifier: "header",
+                                                                for: indexPath)
+            return reusableview
     }
 }
 
