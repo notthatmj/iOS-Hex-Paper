@@ -15,7 +15,7 @@
         <scene sceneID="odR-Of-87C">
             <objects>
                 <collectionViewController storyboardIdentifier="Documents" id="dch-b1-3yV" customClass="DocumentsViewController" customModule="Hex_Paper" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="aC9-z7-tPG">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="aC9-z7-tPG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.74117647058823533" green="1" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1012" y="583.3583208395803"/>
         </scene>
-        <!--View Controller-->
+        <!--Hex Grid View Controller-->
         <scene sceneID="eQO-Hm-VEg">
             <objects>
-                <viewController id="h0x-1I-1ZL" sceneMemberID="viewController">
+                <viewController id="h0x-1I-1ZL" customClass="HexGridViewController" customModule="Hex_Paper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hrL-gk-HxN"/>
                         <viewControllerLayoutGuide type="bottom" id="lhl-YJ-hRg"/>
@@ -94,14 +94,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-qB-6Q8" customClass="HexGridView" customModule="Hex_Paper" customModuleProvider="target">
-                                <rect key="frame" x="16" y="72" width="343" height="587"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm5-x0-AqY">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-qB-6Q8" customClass="HexGridView" customModule="Hex_Paper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="N5m-qB-6Q8" secondAttribute="trailing" id="ceK-pU-GY3"/>
+                                    <constraint firstItem="N5m-qB-6Q8" firstAttribute="top" secondItem="lm5-x0-AqY" secondAttribute="top" id="i3u-mv-Ss5"/>
+                                    <constraint firstAttribute="bottom" secondItem="N5m-qB-6Q8" secondAttribute="bottom" id="nRd-6V-Vmj"/>
+                                    <constraint firstItem="N5m-qB-6Q8" firstAttribute="leading" secondItem="lm5-x0-AqY" secondAttribute="leading" id="uiD-s9-Pac"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="h0x-1I-1ZL" id="WBd-dU-m5f"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.74117647060000003" green="1" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="N5m-qB-6Q8" firstAttribute="height" secondItem="SNA-rd-DGT" secondAttribute="height" id="AnS-EF-5kj"/>
+                            <constraint firstItem="lhl-YJ-hRg" firstAttribute="top" secondItem="lm5-x0-AqY" secondAttribute="bottom" id="Lev-MX-sol"/>
+                            <constraint firstItem="N5m-qB-6Q8" firstAttribute="width" secondItem="SNA-rd-DGT" secondAttribute="width" id="ZMb-Pu-XpA"/>
+                            <constraint firstItem="lm5-x0-AqY" firstAttribute="top" secondItem="hrL-gk-HxN" secondAttribute="bottom" id="bTD-rd-kxT"/>
+                            <constraint firstItem="lm5-x0-AqY" firstAttribute="leading" secondItem="SNA-rd-DGT" secondAttribute="leadingMargin" id="fGf-P6-bof"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lm5-x0-AqY" secondAttribute="trailing" id="zI6-M7-r5Z"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hexGridView" destination="N5m-qB-6Q8" id="aUK-Y4-dWZ"/>
+                        <outlet property="scrollView" destination="lm5-x0-AqY" id="uWJ-BL-ZhW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGv-OK-Q16" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

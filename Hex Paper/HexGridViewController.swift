@@ -10,8 +10,13 @@ import UIKit
 
 class HexGridViewController: UIViewController {
 
+    @IBOutlet weak var hexGridView: HexGridView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
-        super.viewDidLoad() 
+        super.viewDidLoad()
+        scrollView.minimumZoomScale = 0.5
+        scrollView.maximumZoomScale = 40
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,4 +35,10 @@ class HexGridViewController: UIViewController {
     }
     */
 
+}
+
+extension HexGridViewController: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return hexGridView
+    }
 }

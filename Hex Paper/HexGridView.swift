@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class HexGridView: UIView {
 
     // Only override draw() if you perform custom drawing.
