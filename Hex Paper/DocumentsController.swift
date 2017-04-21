@@ -10,7 +10,7 @@ import Foundation
 
 class DocumentsController {
     
-    var model: ModelLayer
+    fileprivate var model: ModelLayer
     
     init(model: ModelLayer) {
         self.model = model

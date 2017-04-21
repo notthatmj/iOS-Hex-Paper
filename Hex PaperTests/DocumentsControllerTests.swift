@@ -50,13 +50,6 @@ class DocumentsControllerTests: XCTestCase {
         SUT = DocumentsController(model: fakeModel)
     }
     
-    func testModel() {
-        let fakeModel = FakeModel()
-        let SUT = DocumentsController(model: fakeModel)
-        
-        XCTAssert(SUT.model as? FakeModel === fakeModel)
-    }
-    
     func testDocumentsSceneAddButtonWasTapped() {
         SUT.documentsSceneAddButtonWasTapped(fakeScene)
         
