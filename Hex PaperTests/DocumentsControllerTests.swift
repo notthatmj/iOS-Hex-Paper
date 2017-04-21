@@ -31,7 +31,7 @@ class FakeDocumentsScene: DocumentsScene {
     func refreshDocumentData() {
         refreshDocumentDataWasCalled = true
     }
-    var indexPathsForSelectedItems: [IndexPath]? = nil
+    var indexPathsForSelectedItems: [IndexPath]?
     var deletedItems: [IndexPath]?
     func deleteItems(at indexPaths: [IndexPath]) {
         deletedItems = indexPaths
