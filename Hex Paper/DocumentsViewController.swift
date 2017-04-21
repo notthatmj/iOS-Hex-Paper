@@ -15,7 +15,6 @@ protocol DocumentsSceneDelegate {
 }
 
 protocol DocumentsScene: class {
-    var delegate: DocumentsSceneDelegate? {get set}
     var indexPathsForSelectedItems: [IndexPath]? { get }
     func deleteItems(at indexPaths: [IndexPath])
     func segueToEditDocumentScene()
