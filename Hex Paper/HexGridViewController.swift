@@ -8,32 +8,31 @@
 
 import UIKit
 
-class HexGridViewController: UIViewController {
+protocol HexGridScene: class {
+    var minimumZoomScale: CGFloat {get set}
+    var maximumZoomScale: CGFloat {get set}
+}
+
+class HexGridViewController: UIViewController, HexGridScene {
 
     @IBOutlet weak var hexGridView: HexGridView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        scrollView.minimumZoomScale = 0.5
-        scrollView.maximumZoomScale = 40
+    var delegate: HexGridController!
+    var minimumZoomScale: CGFloat {
+        get { return scrollView.minimumZoomScale }
+        set { scrollView.minimumZoomScale = newValue }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    var maximumZoomScale: CGFloat {
+        get { return scrollView.maximumZoomScale}
+        set { scrollView.maximumZoomScale = newValue }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        delegate = HexGridController()
+        delegate.hexGridSceneViewDidLoad(self)
     }
-    */
 
 }
 
