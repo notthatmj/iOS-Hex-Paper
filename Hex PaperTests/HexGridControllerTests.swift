@@ -10,8 +10,8 @@ import XCTest
 @testable import Hex_Paper
 
 class FakeHexGridScene: HexGridScene {
-    var minimumZoomScale: CGFloat = 0
-    var maximumZoomScale: CGFloat = 0
+    var minimumZoomScale: Float = 0
+    var maximumZoomScale: Float = 0
 }
 
 class HexGridControllerTests: XCTestCase {
@@ -35,8 +35,8 @@ class HexGridControllerTests: XCTestCase {
         
         SUT.hexGridSceneViewDidLoad(fakeHexGridScene)
         
-        XCTAssertEqual(fakeHexGridScene.minimumZoomScale, CGFloat(HexGridController.minimumZoomScale))
-        XCTAssertEqual(fakeHexGridScene.maximumZoomScale, CGFloat(HexGridController.maximumZoomScale))
+        XCTAssertEqual(fakeHexGridScene.minimumZoomScale, HexGridController.minimumZoomScale)
+        XCTAssertEqual(fakeHexGridScene.maximumZoomScale, HexGridController.maximumZoomScale)
     }
     
 }

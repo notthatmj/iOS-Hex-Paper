@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol HexGridSceneDelegate {
+    func hexGridSceneViewDidLoad(_ hexGridScene: HexGridScene)
+}
+
 protocol HexGridScene: class {
-    var minimumZoomScale: CGFloat {get set}
-    var maximumZoomScale: CGFloat {get set}
+    var minimumZoomScale: Float {get set}
+    var maximumZoomScale: Float {get set}
 }
 
 class HexGridViewController: UIViewController, HexGridScene {
@@ -18,14 +22,15 @@ class HexGridViewController: UIViewController, HexGridScene {
     @IBOutlet weak var hexGridView: HexGridView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var delegate: HexGridController!
-    var minimumZoomScale: CGFloat {
-        get { return scrollView.minimumZoomScale }
-        set { scrollView.minimumZoomScale = newValue }
+    var delegate: HexGridSceneDelegate!
+    
+    var minimumZoomScale: Float {
+        get { return Float(scrollView.minimumZoomScale) }
+        set { scrollView.minimumZoomScale = CGFloat(newValue) }
     }
-    var maximumZoomScale: CGFloat {
-        get { return scrollView.maximumZoomScale}
-        set { scrollView.maximumZoomScale = newValue }
+    var maximumZoomScale: Float {
+        get { return Float(scrollView.maximumZoomScale)}
+        set { scrollView.maximumZoomScale = CGFloat(newValue) }
     }
     
     override func viewDidLoad() {
