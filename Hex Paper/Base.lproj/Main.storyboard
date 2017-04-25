@@ -75,7 +75,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="GvD-kh-Y96" id="IjT-ed-k54"/>
-                        <segue destination="h0x-1I-1ZL" kind="show" identifier="editDocument" id="zFm-CG-Hjr"/>
+                        <segue destination="h0x-1I-1ZL" kind="show" identifier="editDocument" id="7XB-6R-8d2"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdY-sG-qzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -85,7 +85,7 @@
         <!--Hex Grid View Controller-->
         <scene sceneID="eQO-Hm-VEg">
             <objects>
-                <viewController id="h0x-1I-1ZL" customClass="HexGridViewController" customModule="Hex_Paper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="h0x-1I-1ZL" customClass="HexGridViewController" customModule="Hex_Paper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hrL-gk-HxN"/>
                         <viewControllerLayoutGuide type="bottom" id="lhl-YJ-hRg"/>
@@ -95,18 +95,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm5-x0-AqY">
-                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5m-qB-6Q8" customClass="HexGridView" customModule="Hex_Paper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF0-Kb-OER" customClass="HexGridView" customModule="Hex_Paper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.74117647060000003" green="1" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="N5m-qB-6Q8" secondAttribute="trailing" id="ceK-pU-GY3"/>
-                                    <constraint firstItem="N5m-qB-6Q8" firstAttribute="top" secondItem="lm5-x0-AqY" secondAttribute="top" id="i3u-mv-Ss5"/>
-                                    <constraint firstAttribute="bottom" secondItem="N5m-qB-6Q8" secondAttribute="bottom" id="nRd-6V-Vmj"/>
-                                    <constraint firstItem="N5m-qB-6Q8" firstAttribute="leading" secondItem="lm5-x0-AqY" secondAttribute="leading" id="uiD-s9-Pac"/>
+                                    <constraint firstItem="mF0-Kb-OER" firstAttribute="leading" secondItem="lm5-x0-AqY" secondAttribute="leading" id="8Ub-97-9dk"/>
+                                    <constraint firstItem="mF0-Kb-OER" firstAttribute="top" secondItem="lm5-x0-AqY" secondAttribute="top" id="JFr-Mc-Trl"/>
+                                    <constraint firstAttribute="trailing" secondItem="mF0-Kb-OER" secondAttribute="trailing" id="cgM-Pf-vri"/>
+                                    <constraint firstAttribute="bottom" secondItem="mF0-Kb-OER" secondAttribute="bottom" id="cpd-IA-g3F"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="h0x-1I-1ZL" id="WBd-dU-m5f"/>
@@ -115,16 +116,19 @@
                         </subviews>
                         <color key="backgroundColor" red="0.74117647060000003" green="1" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="N5m-qB-6Q8" firstAttribute="height" secondItem="SNA-rd-DGT" secondAttribute="height" id="AnS-EF-5kj"/>
-                            <constraint firstItem="lhl-YJ-hRg" firstAttribute="top" secondItem="lm5-x0-AqY" secondAttribute="bottom" id="Lev-MX-sol"/>
-                            <constraint firstItem="N5m-qB-6Q8" firstAttribute="width" secondItem="SNA-rd-DGT" secondAttribute="width" id="ZMb-Pu-XpA"/>
-                            <constraint firstItem="lm5-x0-AqY" firstAttribute="top" secondItem="hrL-gk-HxN" secondAttribute="bottom" id="bTD-rd-kxT"/>
-                            <constraint firstItem="lm5-x0-AqY" firstAttribute="leading" secondItem="SNA-rd-DGT" secondAttribute="leadingMargin" id="fGf-P6-bof"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lm5-x0-AqY" secondAttribute="trailing" id="zI6-M7-r5Z"/>
+                            <constraint firstAttribute="trailing" secondItem="lm5-x0-AqY" secondAttribute="trailing" id="PA7-bF-ZPw"/>
+                            <constraint firstItem="lm5-x0-AqY" firstAttribute="top" secondItem="hrL-gk-HxN" secondAttribute="bottom" id="Prg-A0-e10"/>
+                            <constraint firstItem="lm5-x0-AqY" firstAttribute="leading" secondItem="SNA-rd-DGT" secondAttribute="leading" id="pnD-kv-ZNT"/>
+                            <constraint firstItem="lhl-YJ-hRg" firstAttribute="top" secondItem="lm5-x0-AqY" secondAttribute="bottom" id="y80-9c-7aw"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="nuy-V7-2nk"/>
                     <connections>
-                        <outlet property="hexGridView" destination="N5m-qB-6Q8" id="aUK-Y4-dWZ"/>
+                        <outlet property="hexGridView" destination="mF0-Kb-OER" id="5m7-ON-8IP"/>
+                        <outlet property="hexGridViewBottomConstraint" destination="cpd-IA-g3F" id="W97-db-MSW"/>
+                        <outlet property="hexGridViewLeadingConstraint" destination="8Ub-97-9dk" id="rxp-JK-ae2"/>
+                        <outlet property="hexGridViewTopConstraint" destination="JFr-Mc-Trl" id="5uo-NT-bxG"/>
+                        <outlet property="hexGridViewTrailingConstraint" destination="cgM-Pf-vri" id="nNg-CT-7YW"/>
                         <outlet property="scrollView" destination="lm5-x0-AqY" id="uWJ-BL-ZhW"/>
                     </connections>
                 </viewController>

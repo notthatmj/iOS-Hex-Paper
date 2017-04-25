@@ -21,7 +21,14 @@ class HexGridViewController: UIViewController, HexGridScene {
 
     @IBOutlet weak var hexGridView: HexGridView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var hexGridViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hexGridViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hexGridViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hexGridViewTrailingConstraint: NSLayoutConstraint!
     
+    @IBAction func debugAction(_ sender: UIBarButtonItem) {
+        
+    }
     var delegate: HexGridSceneDelegate!
     
     var minimumZoomScale: Float {
@@ -37,6 +44,18 @@ class HexGridViewController: UIViewController, HexGridScene {
         super.viewDidLoad()
         delegate = HexGridController()
         delegate.hexGridSceneViewDidLoad(self)
+        updateConstraintsForSize(size: scrollView.frame.size)
+    }
+
+    fileprivate func updateConstraintsForSize(size: CGSize) {
+        
+        let yOffset = max(0, (size.height - hexGridView.frame.height) / 2)
+        hexGridViewTopConstraint.constant = yOffset
+        hexGridViewBottomConstraint.constant = -yOffset
+        
+        let xOffset = max(0, (size.width - hexGridView.frame.width) / 2)
+        hexGridViewLeadingConstraint.constant = xOffset
+        hexGridViewTrailingConstraint.constant = -xOffset
     }
 
 }
@@ -44,5 +63,14 @@ class HexGridViewController: UIViewController, HexGridScene {
 extension HexGridViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return hexGridView
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        updateConstraintsForSize(size: scrollView.frame.size)
+        view.layoutIfNeeded()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
     }
 }

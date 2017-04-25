@@ -11,6 +11,8 @@ import UIKit
 @IBDesignable
 class HexGridView: UIView {
 
+//    override var intrinsicContentSize: CGSize { return CGSize(width: 612, height: 792)}
+    override var intrinsicContentSize: CGSize { return CGSize(width: 100, height: 100)}
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
