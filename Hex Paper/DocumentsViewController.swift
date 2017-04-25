@@ -47,8 +47,20 @@ class DocumentsViewController: UICollectionViewController {
         }
     }
 
-    fileprivate var trashButton: UIBarButtonItem!
-    fileprivate var doneButton: UIBarButtonItem!
+    lazy fileprivate var doneButton: UIBarButtonItem = {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                        target: self,
+                                        action: #selector(DocumentsViewController.doneButtonAction))
+        return doneButton
+    } ()
+    
+    lazy fileprivate var trashButton: UIBarButtonItem = {
+        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
+                                          target: self,
+                                          action: #selector(DocumentsViewController.trashButtonAction))
+        return trashButton
+    } ()
+    
     private var initialRightBarButtonItems: [UIBarButtonItem]?
     private var initialLeftBarButtonItems: [UIBarButtonItem]?
 
@@ -78,15 +90,6 @@ class DocumentsViewController: UICollectionViewController {
         collectionView?.allowsSelection = true
         initialRightBarButtonItems = navigationItem.rightBarButtonItems
         initialLeftBarButtonItems = navigationItem.leftBarButtonItems
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
-                                         target: self,
-                                         action: #selector(DocumentsViewController.doneButtonAction))
-        self.doneButton = doneButton
-        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash,
-                                          target: self,
-                                          action: #selector(DocumentsViewController.trashButtonAction))
-        self.trashButton = trashButton
     }
 
 }
