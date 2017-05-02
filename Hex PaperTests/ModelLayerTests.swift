@@ -14,11 +14,11 @@ class ModelLayerTests: XCTestCase {
     func testDocumentCount() {
         let SUT = SimpleModelLayer()
         
-        XCTAssertEqual(SUT.documentCount,0)
+        XCTAssertEqual(SUT.documentCount, 0)
         SUT.createDocument()
-        XCTAssertEqual(SUT.documentCount,1)
+        XCTAssertEqual(SUT.documentCount, 1)
         SUT.createDocument()
-        XCTAssertEqual(SUT.documentCount,2)
+        XCTAssertEqual(SUT.documentCount, 2)
     }
     
 }

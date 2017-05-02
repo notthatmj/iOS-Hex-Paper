@@ -133,8 +133,7 @@ extension DocumentsViewController {
         if editMode {
             let cell = collectionView.cellForItem(at: indexPath)
             cell?.layer.borderWidth = borderWidth
-            if collectionView.indexPathsForSelectedItems == nil ||
-                collectionView.indexPathsForSelectedItems?.count == 0 {
+            if collectionView.indexPathsForSelectedItems?.count == 0 {
                 trashButton.isEnabled = false
             }
         }
