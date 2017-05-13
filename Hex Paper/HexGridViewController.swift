@@ -44,11 +44,11 @@ class HexGridViewController: UIViewController, HexGridScene {
         super.viewDidLoad()
         delegate = HexGridController()
         delegate.hexGridSceneViewDidLoad(self)
-        updateConstraintsForSize(size: scrollView.frame.size)
+        updateConstraints()
     }
 
-    fileprivate func updateConstraintsForSize(size: CGSize) {
-        
+    fileprivate func updateConstraints() {
+        let size = scrollView.frame.size
         let yOffset = max(0, (size.height - hexGridView.frame.height) / 2)
         hexGridViewTopConstraint.constant = yOffset
         hexGridViewBottomConstraint.constant = -yOffset
@@ -66,7 +66,7 @@ extension HexGridViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        updateConstraintsForSize(size: scrollView.frame.size)
+        updateConstraints()
         view.layoutIfNeeded()
     }
     
