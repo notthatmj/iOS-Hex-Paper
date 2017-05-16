@@ -26,9 +26,10 @@ class HexGridControllerTests: XCTestCase {
     }
     
     func testStaticConstants() {
-        XCTAssertEqual(HexGridController.minimumZoomScale, 0.5)
+        XCTAssertEqual(HexGridController.minimumZoomScale, 0.25)
         XCTAssertEqual(HexGridController.maximumZoomScale, 40)
     }
+    
     func testHexGridSceneViewDidLoad() {
         let SUT = HexGridController()
         let fakeHexGridScene = FakeHexGridScene()

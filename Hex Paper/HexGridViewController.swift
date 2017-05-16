@@ -41,9 +41,30 @@ class HexGridViewController: UIViewController, HexGridScene {
         super.viewDidLoad()
         delegate = HexGridController()
         delegate.hexGridSceneViewDidLoad(self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        initializeZoomScale()
         updateConstraints()
     }
 
+    func initializeZoomScale() {
+        let intrinsicSize = hexGridView.intrinsicContentSize
+        let intrinsicWidth = intrinsicSize.width
+        let scrollViewWidth = scrollView.frame.size.width
+        let widthZoomScale = scrollViewWidth / intrinsicWidth
+        let intrinsicHeight = intrinsicSize.height
+        let scrollViewHeight = scrollView.frame.size.height
+        let heightZoomScale = scrollViewHeight / intrinsicHeight
+        
+        scrollView.zoomScale = min(heightZoomScale, widthZoomScale)
+    }
+    
     fileprivate func updateConstraints() {
         let size = scrollView.frame.size
         let yOffset = max(0, (size.height - hexGridView.frame.height) / 2)

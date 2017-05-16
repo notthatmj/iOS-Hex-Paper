@@ -9,7 +9,7 @@
 import Foundation
 
 class HexGridController: HexGridSceneDelegate {
-    static let minimumZoomScale: Float = 0.5
+    static let minimumZoomScale: Float = 0.25
     static let maximumZoomScale: Float = 40
     
     
