@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		896CDED41ECBCE8500C4B759 /* HexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896CDED31ECBCE8500C4B759 /* HexGrid.swift */; };
+		896CDED61ECBCED000C4B759 /* HexGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896CDED51ECBCED000C4B759 /* HexGridTests.swift */; };
 		897E5CBD1E9D5BED00E39136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */; };
 		897E5CBF1E9D5BED00E39136 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */; };
 		897E5CC21E9D5BED00E39136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897E5CC01E9D5BED00E39136 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		896CDED31ECBCE8500C4B759 /* HexGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGrid.swift; sourceTree = "<group>"; };
+		896CDED51ECBCED000C4B759 /* HexGridTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridTests.swift; sourceTree = "<group>"; };
 		897E5CB91E9D5BED00E39136 /* Hex Paper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hex Paper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 				897E5CE31E9DA19700E39136 /* DocumentsController.swift */,
 				899E6F891EA6ED9E007CBAD2 /* HexGridViewController.swift */,
 				899E6F8B1EA81A1A007CBAD2 /* HexGridView.swift */,
+				896CDED31ECBCE8500C4B759 /* HexGrid.swift */,
 				897E5CE51E9E861400E39136 /* ModelLayer.swift */,
 				897E5CC01E9D5BED00E39136 /* Main.storyboard */,
 				897E5CC61E9D5BED00E39136 /* Assets.xcassets */,
@@ -109,6 +114,7 @@
 			children = (
 				897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */,
 				897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */,
+				896CDED51ECBCED000C4B759 /* HexGridTests.swift */,
 				897E5CD61E9D5BED00E39136 /* Info.plist */,
 			);
 			path = "Hex PaperTests";
@@ -220,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897E5CE61E9E861400E39136 /* ModelLayer.swift in Sources */,
+				896CDED41ECBCE8500C4B759 /* HexGrid.swift in Sources */,
 				897E5CBF1E9D5BED00E39136 /* DocumentsViewController.swift in Sources */,
 				899E6F8C1EA81A1A007CBAD2 /* HexGridView.swift in Sources */,
 				897E5CC51E9D5BED00E39136 /* Hex_Paper.xcdatamodeld in Sources */,
@@ -235,6 +242,7 @@
 			files = (
 				897E5CEA1E9EA89500E39136 /* ModelLayerTests.swift in Sources */,
 				897E5CE21E9DA10800E39136 /* DocumentsControllerTests.swift in Sources */,
+				896CDED61ECBCED000C4B759 /* HexGridTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
