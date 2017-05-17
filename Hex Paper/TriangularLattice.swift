@@ -8,13 +8,22 @@
 
 import Foundation
 
-struct Vertex {
+struct Vertex: Hashable {
+    
     let x: Double
     let y: Double
     
     init(x: Double, y: Double) {
         self.x = x
         self.y = y
+    }
+    
+    var hashValue: Int {
+        return x.hashValue ^ y.hashValue
+    }
+    
+    static func == (lhs: Vertex, rhs: Vertex) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 
