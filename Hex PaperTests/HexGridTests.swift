@@ -12,8 +12,8 @@ import XCTest
 class HexGridTests: XCTestCase {
     
     func testHexGrid() {
-        let SUT = HexGrid(width: 100, height: 200)
+        _ = HexGrid(width: 100, height: 200, hexRadius: 10)
         
-        
+//        XCTAssertEqual(SUT.edges.count, 6)
     }
 }

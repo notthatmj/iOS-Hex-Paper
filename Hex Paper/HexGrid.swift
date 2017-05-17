@@ -9,5 +9,6 @@
 import Foundation
 
 class HexGrid {
-    
+    init(width: Double, height: Double, hexRadius: Double) {
+    }
 }
