@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Vertex {
+struct Vertex {
     let x: Double
     let y: Double
     
@@ -18,19 +18,19 @@ class Vertex {
     }
 }
 
-class TriangularLattice {
+struct TriangularLattice {
     
-    var hexRadius: Double
+    let edgeLength: Double
     
     init(edgeLength: Double) {
-        self.hexRadius = edgeLength
+        self.edgeLength = edgeLength
     }
     
     func vertexAt(row: Int, column: Int) -> Vertex {
-        if row % 2 == 0 {
-            return Vertex(x: hexRadius * 0.5 + hexRadius * Double(column), y:Double(row) * sin(Double.pi / 3) * hexRadius)
-        } else {
-            return Vertex(x: hexRadius * Double(column), y: Double(row) * sin(Double.pi / 3) * hexRadius)
-        }
+        let rowHeight = sin(Double.pi / 3) * edgeLength
+        let y = Double(row) * rowHeight
+        let leftInset = row % 2 == 0 ? 0.5 * edgeLength : 0
+        let x = leftInset + edgeLength * Double(column)
+        return Vertex(x: x, y: y)
     }
 }
