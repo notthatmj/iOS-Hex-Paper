@@ -28,6 +28,7 @@ class TriangularLatticeTests: XCTestCase {
 
     func testTriangularLatticeWithRadius4() {
         let SUT = TriangularLattice(edgeLength:4)
+        let rowHeight = sin(Double.pi / 3) * 4
         
         let firstVertexInFirstRow = SUT.vertexAt(row: 0, column: 0)
         XCTAssertEqual(firstVertexInFirstRow.x, 2)
@@ -39,19 +40,19 @@ class TriangularLatticeTests: XCTestCase {
         
         let firstVertexInSecondRow = SUT.vertexAt(row: 1, column: 0)
         XCTAssertEqual(firstVertexInSecondRow.x, 0)
-        XCTAssertEqual(firstVertexInSecondRow.y, sin(Double.pi / 3) * 4)
+        XCTAssertEqual(firstVertexInSecondRow.y, rowHeight)
         
         let secondVertexInSecondRow = SUT.vertexAt(row: 1, column: 1)
         XCTAssertEqual(secondVertexInSecondRow.x, 4)
-        XCTAssertEqual(secondVertexInSecondRow.y, sin(Double.pi / 3) * 4)
+        XCTAssertEqual(secondVertexInSecondRow.y, rowHeight)
         
         let firstVertexInThirdRow = SUT.vertexAt(row: 2, column: 0)
         XCTAssertEqual(firstVertexInThirdRow.x, 2)
-        XCTAssertEqual(firstVertexInThirdRow.y, 2 * sin(Double.pi / 3) * 4)
+        XCTAssertEqual(firstVertexInThirdRow.y, 2 * rowHeight)
 
         let firstVertexInFourthRow = SUT.vertexAt(row: 3, column:0 )
         XCTAssertEqual(firstVertexInFourthRow.x, 0)
-        XCTAssertEqual(firstVertexInFourthRow.y, 3 * sin(Double.pi / 3) * 4)
+        XCTAssertEqual(firstVertexInFourthRow.y, 3 * rowHeight)
     }
 
 }
