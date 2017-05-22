@@ -15,7 +15,6 @@ struct HexGrid {
         
         let lattice = TriangularLattice(edgeLength: hexRadius)
         let firstHexEdges = HexGrid.edgesForHexWith(centerVertexRow: 1, centerVertexColumn: 1, with: lattice)
-//        let firstHexEdges = HexGrid.edgesForHexWith(centerVertexRow: 1, centerVertexRow: 1, lattice:
         var secondHexEdges: Set<Set<Vertex>> = Set()
         if rows != 1 || columns != 1 {
             secondHexEdges = HexGrid.edgesForHexWith(centerVertexRow: 2,
@@ -29,11 +28,16 @@ struct HexGrid {
                                 centerVertexColumn: Int,
                                 with lattice: TriangularLattice) -> Set<Set<Vertex>> {
 
+        var columnOffset = 0
+        if centerVertexRow % 2 == 0 {
+            columnOffset = 1
+        }
+        
         let leftVertex = lattice.vertexAt(row: centerVertexRow, column: centerVertexColumn - 1)
-        let topLeftVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn - 1)
-        let topRightVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn)
-        let bottomLeftVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn - 1)
-        let bottomRightVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn)
+        let topLeftVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn - 1 + columnOffset)
+        let topRightVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn + columnOffset)
+        let bottomLeftVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn - 1 + columnOffset)
+        let bottomRightVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn + columnOffset)
         let rightVertex = lattice.vertexAt(row: centerVertexRow, column: centerVertexColumn + 1)
         
         return Set( [Set( [leftVertex, topLeftVertex]),

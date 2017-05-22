@@ -16,7 +16,7 @@ class HexGridView: UIView {
     override var intrinsicContentSize: CGSize { return CGSize(width: 612, height: 792)}
     
     override func draw(_ rect: CGRect) {
-        let hexGrid = HexGrid(rows: 0, columns: 0, hexRadius: 40.0)
+        let hexGrid = HexGrid(rows: 1, columns: 2, hexRadius: 40.0)
         let hexPath = UIBezierPath()
         for edge in hexGrid.edges {
             let vertexSequence = Array(edge)
