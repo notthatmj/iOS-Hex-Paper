@@ -17,6 +17,10 @@
 		897E5CE41E9DA19700E39136 /* DocumentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE31E9DA19700E39136 /* DocumentsController.swift */; };
 		897E5CE61E9E861400E39136 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE51E9E861400E39136 /* ModelLayer.swift */; };
 		897E5CEA1E9EA89500E39136 /* ModelLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */; };
+		8998A5111EAE428100EA598E /* HexGridController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998A5101EAE428100EA598E /* HexGridController.swift */; };
+		8998A5131EAE42AF00EA598E /* HexGridControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998A5121EAE42AF00EA598E /* HexGridControllerTests.swift */; };
+		899E6F8A1EA6ED9E007CBAD2 /* HexGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899E6F891EA6ED9E007CBAD2 /* HexGridViewController.swift */; };
+		899E6F8C1EA81A1A007CBAD2 /* HexGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899E6F8B1EA81A1A007CBAD2 /* HexGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		897E5CE31E9DA19700E39136 /* DocumentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsController.swift; sourceTree = "<group>"; };
 		897E5CE51E9E861400E39136 /* ModelLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
 		897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelLayerTests.swift; sourceTree = "<group>"; };
+		8998A5101EAE428100EA598E /* HexGridController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridController.swift; sourceTree = "<group>"; };
+		8998A5121EAE42AF00EA598E /* HexGridControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridControllerTests.swift; sourceTree = "<group>"; };
+		899E6F891EA6ED9E007CBAD2 /* HexGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridViewController.swift; sourceTree = "<group>"; };
+		899E6F8B1EA81A1A007CBAD2 /* HexGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,9 @@
 				897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */,
 				897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */,
 				897E5CE31E9DA19700E39136 /* DocumentsController.swift */,
+				899E6F891EA6ED9E007CBAD2 /* HexGridViewController.swift */,
+				8998A5101EAE428100EA598E /* HexGridController.swift */,
+				899E6F8B1EA81A1A007CBAD2 /* HexGridView.swift */,
 				897E5CE51E9E861400E39136 /* ModelLayer.swift */,
 				897E5CC01E9D5BED00E39136 /* Main.storyboard */,
 				897E5CC61E9D5BED00E39136 /* Assets.xcassets */,
@@ -102,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */,
+				8998A5121EAE42AF00EA598E /* HexGridControllerTests.swift */,
 				897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */,
 				897E5CD61E9D5BED00E39136 /* Info.plist */,
 			);
@@ -214,9 +226,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				897E5CE61E9E861400E39136 /* ModelLayer.swift in Sources */,
+				8998A5111EAE428100EA598E /* HexGridController.swift in Sources */,
 				897E5CBF1E9D5BED00E39136 /* DocumentsViewController.swift in Sources */,
+				899E6F8C1EA81A1A007CBAD2 /* HexGridView.swift in Sources */,
 				897E5CC51E9D5BED00E39136 /* Hex_Paper.xcdatamodeld in Sources */,
 				897E5CE41E9DA19700E39136 /* DocumentsController.swift in Sources */,
+				899E6F8A1EA6ED9E007CBAD2 /* HexGridViewController.swift in Sources */,
 				897E5CBD1E9D5BED00E39136 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +242,7 @@
 			files = (
 				897E5CEA1E9EA89500E39136 /* ModelLayerTests.swift in Sources */,
 				897E5CE21E9DA10800E39136 /* DocumentsControllerTests.swift in Sources */,
+				8998A5131EAE42AF00EA598E /* HexGridControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
