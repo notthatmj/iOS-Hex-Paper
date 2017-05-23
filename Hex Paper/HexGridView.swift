@@ -11,12 +11,12 @@ import UIKit
 @IBDesignable
 class HexGridView: UIView {
 
+    // The heigh and width here we chosen because, when translated to PDF coordinates, I believe they'll
+    // translate to an 8.5 x 11 piece of paper. But the choice is pretty arbitrary for the moment.
     override var intrinsicContentSize: CGSize { return CGSize(width: 612, height: 792)}
 
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    // We just draw a small line for now, to orient ourselves while panning and zooming.
     override func draw(_ rect: CGRect) {
-        // Drawing code
         let path = UIBezierPath()
         path.move(to: CGPoint(x: rect.midX, y: rect.midY))
         path.addLine(to: CGPoint(x: rect.midX, y: rect.midY+20))
