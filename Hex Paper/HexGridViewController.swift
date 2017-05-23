@@ -8,16 +8,7 @@
 
 import UIKit
 
-protocol HexGridSceneDelegate {
-    func hexGridSceneViewDidLoad(_ hexGridScene: HexGridScene)
-}
-
-protocol HexGridScene: class {
-    var minimumZoomScale: Float {get set}
-    var maximumZoomScale: Float {get set}
-}
-
-class HexGridViewController: UIViewController, HexGridScene {
+class HexGridViewController: UIViewController {
 
     @IBOutlet weak var hexGridView: HexGridView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -26,21 +17,13 @@ class HexGridViewController: UIViewController, HexGridScene {
     @IBOutlet weak var hexGridViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var hexGridViewTrailingConstraint: NSLayoutConstraint!
     
-    var delegate: HexGridSceneDelegate!
-    
-    var minimumZoomScale: Float {
-        get { return Float(scrollView.minimumZoomScale) }
-        set { scrollView.minimumZoomScale = CGFloat(newValue) }
-    }
-    var maximumZoomScale: Float {
-        get { return Float(scrollView.maximumZoomScale)}
-        set { scrollView.maximumZoomScale = CGFloat(newValue) }
-    }
-    
+    static let minimumZoomScale: CGFloat = 0.25
+    static let maximumZoomScale: CGFloat = 40
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate = HexGridController()
-        delegate.hexGridSceneViewDidLoad(self)
+        scrollView.minimumZoomScale = HexGridViewController.minimumZoomScale
+        scrollView.maximumZoomScale = HexGridViewController.maximumZoomScale
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,9 +34,11 @@ class HexGridViewController: UIViewController, HexGridScene {
 
     func initializeZoomScale() {
         let intrinsicSize = hexGridView.intrinsicContentSize
+        
         let intrinsicWidth = intrinsicSize.width
         let scrollViewWidth = scrollView.frame.size.width
         let widthZoomScale = scrollViewWidth / intrinsicWidth
+        
         let intrinsicHeight = intrinsicSize.height
         let scrollViewHeight = scrollView.frame.size.height
         let heightZoomScale = scrollViewHeight / intrinsicHeight
