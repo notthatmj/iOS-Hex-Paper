@@ -28,11 +28,11 @@ class HexGridViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        initializeZoomScale()
+        adjustZoomScaleToFit()
         updateConstraints()
     }
 
-    func initializeZoomScale() {
+    func adjustZoomScaleToFit() {
         let intrinsicSize = hexGridView.intrinsicContentSize
         
         let intrinsicWidth = intrinsicSize.width
