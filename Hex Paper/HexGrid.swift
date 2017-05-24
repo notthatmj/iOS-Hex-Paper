@@ -8,14 +8,30 @@
 
 import Foundation
 
+struct Edge: Hashable {
+    let vertices: Set<Vertex>
+    
+    init(_ v1: Vertex, _ v2: Vertex ) {
+        vertices = Set([v1,v2])
+    }
+    
+    var hashValue: Int {
+        return vertices.hashValue
+    }
+    
+    static func == (lhs: Edge, rhs: Edge) -> Bool {
+        return lhs.vertices == rhs.vertices
+    }
+}
+
 struct HexGrid {
-    let edges: Set<Set<Vertex>>
+    let edges: Set<Edge>
     
     init(rows: Int, columns: Int, hexRadius: Double) {
         
         let lattice = TriangularLattice(edgeLength: hexRadius)
         let firstHexEdges = HexGrid.edgesForHexWith(centerVertexRow: 1, centerVertexColumn: 1, with: lattice)
-        var secondHexEdges: Set<Set<Vertex>> = Set()
+        var secondHexEdges: Set<Edge> = Set()
         if rows != 1 || columns != 1 {
             secondHexEdges = HexGrid.edgesForHexWith(centerVertexRow: 2,
                                                      centerVertexColumn: 2,
@@ -26,7 +42,7 @@ struct HexGrid {
 
     static func edgesForHexWith(centerVertexRow: Int,
                                 centerVertexColumn: Int,
-                                with lattice: TriangularLattice) -> Set<Set<Vertex>> {
+                                with lattice: TriangularLattice) -> Set<Edge> {
 
         var columnOffset = 0
         if centerVertexRow % 2 == 0 {
@@ -40,12 +56,12 @@ struct HexGrid {
         let bottomRightVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn + columnOffset)
         let rightVertex = lattice.vertexAt(row: centerVertexRow, column: centerVertexColumn + 1)
         
-        return Set( [Set( [leftVertex, topLeftVertex]),
-                     Set( [topLeftVertex, topRightVertex]),
-                     Set( [topRightVertex, rightVertex]),
-                     Set( [leftVertex, bottomLeftVertex]),
-                     Set( [bottomLeftVertex, bottomRightVertex]),
-                     Set( [bottomRightVertex, rightVertex]),
+        return Set( [Edge(leftVertex, topLeftVertex),
+                     Edge(topLeftVertex, topRightVertex),
+                     Edge(topRightVertex, rightVertex),
+                     Edge(leftVertex, bottomLeftVertex),
+                     Edge(bottomLeftVertex, bottomRightVertex),
+                     Edge(bottomRightVertex, rightVertex),
                      ])
     }
 }

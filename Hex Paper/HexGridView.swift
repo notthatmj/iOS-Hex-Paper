@@ -19,7 +19,7 @@ class HexGridView: UIView {
         let hexGrid = HexGrid(rows: 1, columns: 2, hexRadius: 40.0)
         let hexPath = UIBezierPath()
         for edge in hexGrid.edges {
-            let vertexSequence = Array(edge)
+            let vertexSequence = Array(edge.vertices)
             let point1 = CGPoint(x: vertexSequence[0].x, y: vertexSequence[0].y)
             let point2 = CGPoint(x: vertexSequence[1].x, y: vertexSequence[1].y)
             hexPath.move(to: point1)
