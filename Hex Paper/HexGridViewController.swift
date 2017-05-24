@@ -10,12 +10,12 @@ import UIKit
 
 class HexGridViewController: UIViewController {
 
-    @IBOutlet weak var hexGridView: HexGridView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var hexGridViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var hexGridViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var hexGridViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var hexGridViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var hexGridView: HexGridView!
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var hexGridViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var hexGridViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var hexGridViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var hexGridViewTrailingConstraint: NSLayoutConstraint!
     
     static let minimumZoomScale: CGFloat = 0.25
     static let maximumZoomScale: CGFloat = 40
