@@ -343,12 +343,4 @@ class HexGridTests: XCTestCase {
         XCTAssert(SUT.edges.contains(e63))        
     }
     
-    func testFoobar() {
-        XCTAssertEqual(HexGrid.vertexColumnForHexAt(rowIndex: 0, columnIndex: 1), 2)
-    }
-    
-    func testFoobar2() {
-        XCTAssertEqual(HexGrid.vertexColumnForHexAt(rowIndex: 0, columnIndex: 2), 4)
-    }
-
 }
