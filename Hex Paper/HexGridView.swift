@@ -80,25 +80,24 @@ struct HexGrid {
         self.edges = workingEdges
     }
     
-    
     static func vertexRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
-        var result = 0
+        var vertexRow: Int
         if columnIndex % 2 == 0 {
-            result = 1 + 2 * rowIndex
+            vertexRow = 1 + 2 * rowIndex
         } else {
-            result = 2 + 2 * rowIndex
+            vertexRow = 2 + 2 * rowIndex
         }
-        return result
+        return vertexRow
     }
     
     static func vertexColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
-        var result = 0
+        var vertexColumn: Int
         if columnIndex % 2 == 0 {
-            result = 1 + 3 * columnIndex / 2
+            vertexColumn = 1 + 3 * columnIndex / 2
         } else {
-            result = 2 + 3 * (columnIndex - 1) / 2
+            vertexColumn = 2 + 3 * (columnIndex - 1) / 2
         }
-        return result
+        return vertexColumn
     }
     
     static func edgesForHexWith(centerVertexRow: Int,
