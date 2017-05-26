@@ -100,6 +100,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF0-Kb-OER" customClass="HexGridView" customModule="Hex_Paper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="612" height="792"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="612" id="kdb-lC-zpa"/>
+                                            <constraint firstAttribute="height" constant="792" id="zkc-gu-6Ux"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.74117647060000003" green="1" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

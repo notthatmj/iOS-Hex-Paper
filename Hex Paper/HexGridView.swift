@@ -129,10 +129,6 @@ struct HexGrid {
 @IBDesignable
 class HexGridView: UIView {
 
-    // The heigh and width here we chosen because, when translated to PDF coordinates, I believe they'll
-    // translate to an 8.5 x 11 piece of paper. But the choice is pretty arbitrary for the moment.
-    override var intrinsicContentSize: CGSize { return CGSize(width: 612, height: 792)}
-    
     override func draw(_ rect: CGRect) {
         let hexGrid = HexGrid(rows: 20, columns: 20, hexRadius: 36.0)
         let hexPath = UIBezierPath()
