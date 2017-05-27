@@ -128,9 +128,21 @@ struct HexGrid {
 
 @IBDesignable
 class HexGridView: UIView {
+    
+    @IBInspectable var hexRadius: CGFloat = 10.0
 
     override func draw(_ rect: CGRect) {
-        let hexGrid = HexGrid(rows: 20, columns: 20, hexRadius: 36.0)
+        // Calculate minimum number of hex rows and columns needed to cover
+        // the view
+        let hexWidth = 2 * hexRadius
+        let boundsWidth = self.bounds.size.width
+        let columns = Int(ceil(boundsWidth / hexWidth))
+        
+        let hexHeight = 2 * sin(CGFloat.pi / 3) * hexRadius
+        let boundsHeight = self.bounds.size.height
+        let rows = Int(ceil(boundsHeight / hexHeight))
+        
+        let hexGrid = HexGrid(rows: rows, columns: columns, hexRadius: Double(self.hexRadius))
         let hexPath = UIBezierPath()
         for edge in hexGrid.edges {
             let vertexSequence = Array(edge.vertices)
