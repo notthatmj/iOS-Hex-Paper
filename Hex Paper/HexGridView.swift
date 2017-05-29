@@ -95,7 +95,7 @@ struct HexGrid {
         
     }
     
-    static func centerVertexRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
+    private static func centerVertexRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
         var vertexRow: Int
         if columnIndex % 2 == 0 {
             vertexRow = 1 + 2 * rowIndex
@@ -105,7 +105,7 @@ struct HexGrid {
         return vertexRow
     }
     
-    static func centerVertexColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
+    private static func centerVertexColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
         var vertexColumn: Int
         if columnIndex % 2 == 0 {
             vertexColumn = 1 + 3 * columnIndex / 2
@@ -115,7 +115,7 @@ struct HexGrid {
         return vertexColumn
     }
     
-    static func edgesForHexWith(centerVertexRow: Int,
+    private static func edgesForHexWith(centerVertexRow: Int,
                                 centerVertexColumn: Int,
                                 with lattice: TriangularLattice) -> Set<Edge> {
         
