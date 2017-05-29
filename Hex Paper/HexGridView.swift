@@ -67,17 +67,17 @@ struct HexGrid {
         
         let lattice = TriangularLattice(edgeLength: hexRadius)
         
-        var workingEdges = Set<Edge>()
+        var edgesArray = Array<Edge>()
         for rowIndex in 0..<rows  {
             for columnIndex in 0..<columns {
                 let vertexRow = HexGrid.vertexRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
                 let vertexColumn = HexGrid.vertexColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
-                workingEdges = workingEdges.union(HexGrid.edgesForHexWith(centerVertexRow: vertexRow,
-                                                                          centerVertexColumn: vertexColumn,
-                                                                          with: lattice))
+                edgesArray.append(contentsOf: HexGrid.edgesForHexWith(centerVertexRow: vertexRow,
+                                                                      centerVertexColumn: vertexColumn,
+                                                                      with: lattice))
             }
         }
-        self.edges = workingEdges
+        self.edges = Set(edgesArray)
     }
     
     static func vertexRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
