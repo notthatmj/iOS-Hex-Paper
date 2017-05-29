@@ -87,10 +87,9 @@ struct HexGrid {
         // So if we want to cover boundsWidth, we need
         //     numberOfHexColumns >= (boundsWidth - 0.5 * hexRadius ) / (1.5 * hexRadius)
 
-        let columns = Int(ceil((width - 0.5 * hexRadius ) / (1.5 * hexRadius)))
-        
+        let columns = max(1, Int(ceil((width - 0.5 * hexRadius ) / (1.5 * hexRadius))))
         let hexHeight = 2 * sin(Double.pi / 3) * hexRadius
-        let rows = Int(ceil(height / hexHeight))
+        let rows = max(1, Int(ceil(height / hexHeight)))
         
         self.init(rows: rows, columns: columns, hexRadius: hexRadius)
         

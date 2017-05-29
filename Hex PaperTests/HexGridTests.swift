@@ -343,4 +343,19 @@ class HexGridTests: XCTestCase {
         XCTAssert(SUT.edges.contains(e63))        
     }
     
+    func testInitWithWidthAndHeight() {
+        let SUT = HexGrid(width: 10, height: 10, hexRadius: 20)
+        
+        let expectedEdges = HexGrid(rows: 1, columns: 1, hexRadius: 20).edges
+        
+        XCTAssertEqual(SUT.edges, expectedEdges)
+    }
+    
+    func testInitWithWidthAndHeight2() {
+        let SUT = HexGrid(width: 50, height: 40, hexRadius: 20)
+        
+        let expectedEdges = HexGrid(rows: 2, columns: 2, hexRadius: 20).edges
+        
+        XCTAssertEqual(SUT.edges, expectedEdges)
+    }
 }
