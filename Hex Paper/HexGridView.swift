@@ -132,8 +132,8 @@ class HexGridView: UIView {
     @IBInspectable var hexRadius: CGFloat = 10.0
 
     override func draw(_ rect: CGRect) {
-        // Calculate minimum number of hex rows and columns needed to cover
-        // By drawing a diagram, we can see that
+        // Calculate minimum number of hex rows and columns needed to cover the view
+        // If you draw a diagram, its not hard to see that
         //      gridWidth = .5 * hexRadius + 1.5 * hexRadius * numberOfHexColumns
         // So if we want to cover boundsWidth, we need
         //     numberOfHexColumns >= (boundsWidth - 0.5 * hexRadius ) / (1.5 * hexRadius)
