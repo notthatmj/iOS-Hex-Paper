@@ -133,10 +133,12 @@ class HexGridView: UIView {
 
     override func draw(_ rect: CGRect) {
         // Calculate minimum number of hex rows and columns needed to cover
-        // the view
-        let hexWidth = 2 * hexRadius
+        // By drawing a diagram, we can see that
+        //      gridWidth = .5 * hexRadius + 1.5 * hexRadius * numberOfHexColumns
+        // So if we want to cover boundsWidth, we need
+        //     numberOfHexColumns >= (boundsWidth - 0.5 * hexRadius ) / (1.5 * hexRadius)
         let boundsWidth = self.bounds.size.width
-        let columns = Int(ceil(boundsWidth / hexWidth))
+        let columns = Int(ceil((boundsWidth - 0.5 * hexRadius ) / (1.5 * hexRadius)))
         
         let hexHeight = 2 * sin(CGFloat.pi / 3) * hexRadius
         let boundsHeight = self.bounds.size.height
