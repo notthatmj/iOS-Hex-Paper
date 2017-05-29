@@ -80,6 +80,22 @@ struct HexGrid {
         self.edges = Set(accumulatedEdges)
     }
     
+    init(width: Double, height: Double, hexRadius: Double) {
+        // Calculate minimum number of hex rows and columns needed to cover the view
+        // If you draw a diagram, its not hard to see that
+        //      gridWidth = .5 * hexRadius + 1.5 * hexRadius * numberOfHexColumns
+        // So if we want to cover boundsWidth, we need
+        //     numberOfHexColumns >= (boundsWidth - 0.5 * hexRadius ) / (1.5 * hexRadius)
+
+        let columns = Int(ceil((width - 0.5 * hexRadius ) / (1.5 * hexRadius)))
+        
+        let hexHeight = 2 * sin(Double.pi / 3) * hexRadius
+        let rows = Int(ceil(height / hexHeight))
+        
+        self.init(rows: rows, columns: columns, hexRadius: hexRadius)
+        
+    }
+    
     static func vertexRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
         var vertexRow: Int
         if columnIndex % 2 == 0 {
@@ -132,19 +148,9 @@ class HexGridView: UIView {
     @IBInspectable var hexRadius: CGFloat = 10.0
 
     override func draw(_ rect: CGRect) {
-        // Calculate minimum number of hex rows and columns needed to cover the view
-        // If you draw a diagram, its not hard to see that
-        //      gridWidth = .5 * hexRadius + 1.5 * hexRadius * numberOfHexColumns
-        // So if we want to cover boundsWidth, we need
-        //     numberOfHexColumns >= (boundsWidth - 0.5 * hexRadius ) / (1.5 * hexRadius)
-        let boundsWidth = self.bounds.size.width
-        let columns = Int(ceil((boundsWidth - 0.5 * hexRadius ) / (1.5 * hexRadius)))
-        
-        let hexHeight = 2 * sin(CGFloat.pi / 3) * hexRadius
-        let boundsHeight = self.bounds.size.height
-        let rows = Int(ceil(boundsHeight / hexHeight))
-        
-        let hexGrid = HexGrid(rows: rows, columns: columns, hexRadius: Double(self.hexRadius))
+        let hexGrid = HexGrid(width: Double(self.bounds.size.width),
+                              height: Double(self.bounds.size.height),
+                              hexRadius: Double(self.hexRadius))
         let hexPath = UIBezierPath()
         for edge in hexGrid.edges {
             let vertexSequence = Array(edge.vertices)
