@@ -27,7 +27,7 @@ struct Vertex: Hashable {
     }
 }
 
-struct TriangularLattice {
+fileprivate struct TriangularLattice {
     
     let edgeLength: Double
     

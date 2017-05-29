@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		896CDED61ECBCED000C4B759 /* HexGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896CDED51ECBCED000C4B759 /* HexGridTests.swift */; };
-		896CDED81ECC690100C4B759 /* TriangularLatticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896CDED71ECC690100C4B759 /* TriangularLatticeTests.swift */; };
 		897E5CBD1E9D5BED00E39136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */; };
 		897E5CBF1E9D5BED00E39136 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */; };
 		897E5CC21E9D5BED00E39136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897E5CC01E9D5BED00E39136 /* Main.storyboard */; };
@@ -35,7 +34,6 @@
 
 /* Begin PBXFileReference section */
 		896CDED51ECBCED000C4B759 /* HexGridTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexGridTests.swift; sourceTree = "<group>"; };
-		896CDED71ECC690100C4B759 /* TriangularLatticeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangularLatticeTests.swift; sourceTree = "<group>"; };
 		897E5CB91E9D5BED00E39136 /* Hex Paper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hex Paper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		897E5CBC1E9D5BED00E39136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		897E5CBE1E9D5BED00E39136 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				897E5CE11E9DA10800E39136 /* DocumentsControllerTests.swift */,
 				897E5CE91E9EA89500E39136 /* ModelLayerTests.swift */,
 				896CDED51ECBCED000C4B759 /* HexGridTests.swift */,
-				896CDED71ECC690100C4B759 /* TriangularLatticeTests.swift */,
 				897E5CD61E9D5BED00E39136 /* Info.plist */,
 			);
 			path = "Hex PaperTests";
@@ -239,7 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				896CDED81ECC690100C4B759 /* TriangularLatticeTests.swift in Sources */,
 				897E5CEA1E9EA89500E39136 /* ModelLayerTests.swift in Sources */,
 				897E5CE21E9DA10800E39136 /* DocumentsControllerTests.swift in Sources */,
 				896CDED61ECBCED000C4B759 /* HexGridTests.swift in Sources */,
