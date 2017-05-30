@@ -34,8 +34,8 @@ fileprivate struct TriangularLattice {
 struct Edge: Hashable {
     let points: Set<CGPoint>
     
-    init(_ v1: CGPoint, _ v2: CGPoint ) {
-        points = Set([v1,v2])
+    init(_ p1: CGPoint, _ p2: CGPoint ) {
+        points = Set([p1,p2])
     }
     
     var hashValue: Int {
