@@ -59,8 +59,8 @@ struct HexGrid {
             for columnIndex in 0..<columns {
                 let vertexRow = HexGrid.centerPointRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
                 let vertexColumn = HexGrid.centerPointColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
-                accumulatedEdges.append(contentsOf: HexGrid.edgesForHexWith(centerVertexRow: vertexRow,
-                                                                            centerVertexColumn: vertexColumn,
+                accumulatedEdges.append(contentsOf: HexGrid.edgesForHexWith(centerPointRow: vertexRow,
+                                                                            centerPointColumn: vertexColumn,
                                                                             with: lattice))
             }
         }
@@ -102,21 +102,21 @@ struct HexGrid {
         return vertexColumn
     }
     
-    private static func edgesForHexWith(centerVertexRow: Int,
-                                centerVertexColumn: Int,
+    private static func edgesForHexWith(centerPointRow: Int,
+                                centerPointColumn: Int,
                                 with lattice: TriangularLattice) -> Set<Edge> {
         
         var columnOffset = 0
-        if centerVertexRow % 2 == 0 {
+        if centerPointRow % 2 == 0 {
             columnOffset = 1
         }
         
-        let leftVertex = lattice.pointAt(row: centerVertexRow, column: centerVertexColumn - 1)
-        let topLeftVertex = lattice.pointAt(row: centerVertexRow - 1, column: centerVertexColumn - 1 + columnOffset)
-        let topRightVertex = lattice.pointAt(row: centerVertexRow - 1, column: centerVertexColumn + columnOffset)
-        let bottomLeftVertex = lattice.pointAt(row: centerVertexRow + 1, column: centerVertexColumn - 1 + columnOffset)
-        let bottomRightVertex = lattice.pointAt(row: centerVertexRow + 1, column: centerVertexColumn + columnOffset)
-        let rightVertex = lattice.pointAt(row: centerVertexRow, column: centerVertexColumn + 1)
+        let leftVertex = lattice.pointAt(row: centerPointRow, column: centerPointColumn - 1)
+        let topLeftVertex = lattice.pointAt(row: centerPointRow - 1, column: centerPointColumn - 1 + columnOffset)
+        let topRightVertex = lattice.pointAt(row: centerPointRow - 1, column: centerPointColumn + columnOffset)
+        let bottomLeftVertex = lattice.pointAt(row: centerPointRow + 1, column: centerPointColumn - 1 + columnOffset)
+        let bottomRightVertex = lattice.pointAt(row: centerPointRow + 1, column: centerPointColumn + columnOffset)
+        let rightVertex = lattice.pointAt(row: centerPointRow, column: centerPointColumn + 1)
         
         return Set( [Edge(leftVertex, topLeftVertex),
                      Edge(topLeftVertex, topRightVertex),
