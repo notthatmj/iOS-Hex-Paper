@@ -8,22 +8,9 @@
 
 import UIKit
 
-struct Vertex: Hashable {
-    
-    let x: Double
-    let y: Double
-    
-    init(x: Double, y: Double) {
-        self.x = x
-        self.y = y
-    }
-    
-    var hashValue: Int {
+extension CGPoint: Hashable {
+    public var hashValue: Int {
         return x.hashValue ^ y.hashValue
-    }
-    
-    static func == (lhs: Vertex, rhs: Vertex) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 
@@ -35,19 +22,19 @@ fileprivate struct TriangularLattice {
         self.edgeLength = edgeLength
     }
     
-    func vertexAt(row: Int, column: Int) -> Vertex {
+    func vertexAt(row: Int, column: Int) -> CGPoint {
         let rowHeight = sin(Double.pi / 3) * edgeLength
         let y = Double(row) * rowHeight
         let leftInset = row % 2 == 0 ? 0.5 * edgeLength : 0
         let x = leftInset + edgeLength * Double(column)
-        return Vertex(x: x, y: y)
+        return CGPoint(x: x, y: y)
     }
 }
 
 struct Edge: Hashable {
-    let vertices: Set<Vertex>
+    let vertices: Set<CGPoint>
     
-    init(_ v1: Vertex, _ v2: Vertex ) {
+    init(_ v1: CGPoint, _ v2: CGPoint ) {
         vertices = Set([v1,v2])
     }
     
