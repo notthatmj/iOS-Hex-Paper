@@ -57,10 +57,10 @@ struct HexGrid {
         var accumulatedEdges = Array<Edge>()
         for rowIndex in 0..<rows  {
             for columnIndex in 0..<columns {
-                let vertexRow = HexGrid.centerPointRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
-                let vertexColumn = HexGrid.centerPointColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
-                accumulatedEdges.append(contentsOf: HexGrid.edgesForHexWith(centerPointRow: vertexRow,
-                                                                            centerPointColumn: vertexColumn,
+                let pointRow = HexGrid.centerPointRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
+                let pointColumn = HexGrid.centerPointColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
+                accumulatedEdges.append(contentsOf: HexGrid.edgesForHexWith(centerPointRow: pointRow,
+                                                                            centerPointColumn: pointColumn,
                                                                             with: lattice))
             }
         }
@@ -83,23 +83,23 @@ struct HexGrid {
     }
     
     private static func centerPointRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
-        var vertexRow: Int
+        var pointRow: Int
         if columnIndex % 2 == 0 {
-            vertexRow = 1 + 2 * rowIndex
+            pointRow = 1 + 2 * rowIndex
         } else {
-            vertexRow = 2 + 2 * rowIndex
+            pointRow = 2 + 2 * rowIndex
         }
-        return vertexRow
+        return pointRow
     }
     
     private static func centerPointColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
-        var vertexColumn: Int
+        var pointColumn: Int
         if columnIndex % 2 == 0 {
-            vertexColumn = 1 + 3 * columnIndex / 2
+            pointColumn = 1 + 3 * columnIndex / 2
         } else {
-            vertexColumn = 2 + 3 * (columnIndex - 1) / 2
+            pointColumn = 2 + 3 * (columnIndex - 1) / 2
         }
-        return vertexColumn
+        return pointColumn
     }
     
     private static func edgesForHexWith(centerPointRow: Int,
@@ -140,11 +140,9 @@ class HexGridView: UIView {
                               hexRadius: Double(self.hexRadius))
         let hexPath = UIBezierPath()
         for edge in hexGrid.edges {
-            let vertexSequence = Array(edge.points)
-            let point1 = CGPoint(x: vertexSequence[0].x, y: vertexSequence[0].y)
-            let point2 = CGPoint(x: vertexSequence[1].x, y: vertexSequence[1].y)
-            hexPath.move(to: point1)
-            hexPath.addLine(to: point2)
+            let points = Array(edge.points)
+            hexPath.move(to: points[0])
+            hexPath.addLine(to: points[1])
         }
         gridColor.setStroke()
         hexPath.stroke()
