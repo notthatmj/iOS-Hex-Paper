@@ -32,18 +32,18 @@ fileprivate struct TriangularLattice {
 }
 
 struct Edge: Hashable {
-    let vertices: Set<CGPoint>
+    let points: Set<CGPoint>
     
     init(_ v1: CGPoint, _ v2: CGPoint ) {
-        vertices = Set([v1,v2])
+        points = Set([v1,v2])
     }
     
     var hashValue: Int {
-        return vertices.hashValue
+        return points.hashValue
     }
     
     static func == (lhs: Edge, rhs: Edge) -> Bool {
-        return lhs.vertices == rhs.vertices
+        return lhs.points == rhs.points
     }
 }
 
@@ -140,7 +140,7 @@ class HexGridView: UIView {
                               hexRadius: Double(self.hexRadius))
         let hexPath = UIBezierPath()
         for edge in hexGrid.edges {
-            let vertexSequence = Array(edge.vertices)
+            let vertexSequence = Array(edge.points)
             let point1 = CGPoint(x: vertexSequence[0].x, y: vertexSequence[0].y)
             let point2 = CGPoint(x: vertexSequence[1].x, y: vertexSequence[1].y)
             hexPath.move(to: point1)
