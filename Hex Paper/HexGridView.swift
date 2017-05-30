@@ -8,22 +8,9 @@
 
 import UIKit
 
-struct Vertex: Hashable {
-    
-    let x: Double
-    let y: Double
-    
-    init(x: Double, y: Double) {
-        self.x = x
-        self.y = y
-    }
-    
-    var hashValue: Int {
+extension CGPoint: Hashable {
+    public var hashValue: Int {
         return x.hashValue ^ y.hashValue
-    }
-    
-    static func == (lhs: Vertex, rhs: Vertex) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 
@@ -35,28 +22,28 @@ fileprivate struct TriangularLattice {
         self.edgeLength = edgeLength
     }
     
-    func vertexAt(row: Int, column: Int) -> Vertex {
+    func pointAt(row: Int, column: Int) -> CGPoint {
         let rowHeight = sin(Double.pi / 3) * edgeLength
         let y = Double(row) * rowHeight
         let leftInset = row % 2 == 0 ? 0.5 * edgeLength : 0
         let x = leftInset + edgeLength * Double(column)
-        return Vertex(x: x, y: y)
+        return CGPoint(x: x, y: y)
     }
 }
 
 struct Edge: Hashable {
-    let vertices: Set<Vertex>
+    let points: Set<CGPoint>
     
-    init(_ v1: Vertex, _ v2: Vertex ) {
-        vertices = Set([v1,v2])
+    init(_ p1: CGPoint, _ p2: CGPoint ) {
+        points = Set([p1,p2])
     }
     
     var hashValue: Int {
-        return vertices.hashValue
+        return points.hashValue
     }
     
     static func == (lhs: Edge, rhs: Edge) -> Bool {
-        return lhs.vertices == rhs.vertices
+        return lhs.points == rhs.points
     }
 }
 
@@ -70,10 +57,10 @@ struct HexGrid {
         var accumulatedEdges = Array<Edge>()
         for rowIndex in 0..<rows  {
             for columnIndex in 0..<columns {
-                let vertexRow = HexGrid.centerVertexRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
-                let vertexColumn = HexGrid.centerVertexColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
-                accumulatedEdges.append(contentsOf: HexGrid.edgesForHexWith(centerVertexRow: vertexRow,
-                                                                            centerVertexColumn: vertexColumn,
+                let pointRow = HexGrid.centerPointRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
+                let pointColumn = HexGrid.centerPointColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
+                accumulatedEdges.append(contentsOf: HexGrid.edgesForHexWith(centerPointRow: pointRow,
+                                                                            centerPointColumn: pointColumn,
                                                                             with: lattice))
             }
         }
@@ -95,41 +82,41 @@ struct HexGrid {
         
     }
     
-    private static func centerVertexRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
-        var vertexRow: Int
+    private static func centerPointRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
+        var pointRow: Int
         if columnIndex % 2 == 0 {
-            vertexRow = 1 + 2 * rowIndex
+            pointRow = 1 + 2 * rowIndex
         } else {
-            vertexRow = 2 + 2 * rowIndex
+            pointRow = 2 + 2 * rowIndex
         }
-        return vertexRow
+        return pointRow
     }
     
-    private static func centerVertexColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
-        var vertexColumn: Int
+    private static func centerPointColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
+        var pointColumn: Int
         if columnIndex % 2 == 0 {
-            vertexColumn = 1 + 3 * columnIndex / 2
+            pointColumn = 1 + 3 * columnIndex / 2
         } else {
-            vertexColumn = 2 + 3 * (columnIndex - 1) / 2
+            pointColumn = 2 + 3 * (columnIndex - 1) / 2
         }
-        return vertexColumn
+        return pointColumn
     }
     
-    private static func edgesForHexWith(centerVertexRow: Int,
-                                centerVertexColumn: Int,
+    private static func edgesForHexWith(centerPointRow: Int,
+                                centerPointColumn: Int,
                                 with lattice: TriangularLattice) -> Set<Edge> {
         
         var columnOffset = 0
-        if centerVertexRow % 2 == 0 {
+        if centerPointRow % 2 == 0 {
             columnOffset = 1
         }
         
-        let leftVertex = lattice.vertexAt(row: centerVertexRow, column: centerVertexColumn - 1)
-        let topLeftVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn - 1 + columnOffset)
-        let topRightVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn + columnOffset)
-        let bottomLeftVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn - 1 + columnOffset)
-        let bottomRightVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn + columnOffset)
-        let rightVertex = lattice.vertexAt(row: centerVertexRow, column: centerVertexColumn + 1)
+        let leftVertex = lattice.pointAt(row: centerPointRow, column: centerPointColumn - 1)
+        let topLeftVertex = lattice.pointAt(row: centerPointRow - 1, column: centerPointColumn - 1 + columnOffset)
+        let topRightVertex = lattice.pointAt(row: centerPointRow - 1, column: centerPointColumn + columnOffset)
+        let bottomLeftVertex = lattice.pointAt(row: centerPointRow + 1, column: centerPointColumn - 1 + columnOffset)
+        let bottomRightVertex = lattice.pointAt(row: centerPointRow + 1, column: centerPointColumn + columnOffset)
+        let rightVertex = lattice.pointAt(row: centerPointRow, column: centerPointColumn + 1)
         
         return Set( [Edge(leftVertex, topLeftVertex),
                      Edge(topLeftVertex, topRightVertex),
@@ -153,11 +140,9 @@ class HexGridView: UIView {
                               hexRadius: Double(self.hexRadius))
         let hexPath = UIBezierPath()
         for edge in hexGrid.edges {
-            let vertexSequence = Array(edge.vertices)
-            let point1 = CGPoint(x: vertexSequence[0].x, y: vertexSequence[0].y)
-            let point2 = CGPoint(x: vertexSequence[1].x, y: vertexSequence[1].y)
-            hexPath.move(to: point1)
-            hexPath.addLine(to: point2)
+            let points = Array(edge.points)
+            hexPath.move(to: points[0])
+            hexPath.addLine(to: points[1])
         }
         gridColor.setStroke()
         hexPath.stroke()
