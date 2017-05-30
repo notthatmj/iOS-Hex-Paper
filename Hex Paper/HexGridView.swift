@@ -145,7 +145,8 @@ struct HexGrid {
 class HexGridView: UIView {
     
     @IBInspectable var hexRadius: CGFloat = 10.0
-
+    @IBInspectable var gridColor: UIColor = UIColor.gray
+    
     override func draw(_ rect: CGRect) {
         let hexGrid = HexGrid(width: Double(self.bounds.size.width),
                               height: Double(self.bounds.size.height),
@@ -158,7 +159,7 @@ class HexGridView: UIView {
             hexPath.move(to: point1)
             hexPath.addLine(to: point2)
         }
-        UIColor.gray.setStroke()
+        gridColor.setStroke()
         hexPath.stroke()
     }
 }
