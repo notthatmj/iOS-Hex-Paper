@@ -22,7 +22,7 @@ fileprivate struct TriangularLattice {
         self.edgeLength = edgeLength
     }
     
-    func vertexAt(row: Int, column: Int) -> CGPoint {
+    func pointAt(row: Int, column: Int) -> CGPoint {
         let rowHeight = sin(Double.pi / 3) * edgeLength
         let y = Double(row) * rowHeight
         let leftInset = row % 2 == 0 ? 0.5 * edgeLength : 0
@@ -111,12 +111,12 @@ struct HexGrid {
             columnOffset = 1
         }
         
-        let leftVertex = lattice.vertexAt(row: centerVertexRow, column: centerVertexColumn - 1)
-        let topLeftVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn - 1 + columnOffset)
-        let topRightVertex = lattice.vertexAt(row: centerVertexRow - 1, column: centerVertexColumn + columnOffset)
-        let bottomLeftVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn - 1 + columnOffset)
-        let bottomRightVertex = lattice.vertexAt(row: centerVertexRow + 1, column: centerVertexColumn + columnOffset)
-        let rightVertex = lattice.vertexAt(row: centerVertexRow, column: centerVertexColumn + 1)
+        let leftVertex = lattice.pointAt(row: centerVertexRow, column: centerVertexColumn - 1)
+        let topLeftVertex = lattice.pointAt(row: centerVertexRow - 1, column: centerVertexColumn - 1 + columnOffset)
+        let topRightVertex = lattice.pointAt(row: centerVertexRow - 1, column: centerVertexColumn + columnOffset)
+        let bottomLeftVertex = lattice.pointAt(row: centerVertexRow + 1, column: centerVertexColumn - 1 + columnOffset)
+        let bottomRightVertex = lattice.pointAt(row: centerVertexRow + 1, column: centerVertexColumn + columnOffset)
+        let rightVertex = lattice.pointAt(row: centerVertexRow, column: centerVertexColumn + 1)
         
         return Set( [Edge(leftVertex, topLeftVertex),
                      Edge(topLeftVertex, topRightVertex),
