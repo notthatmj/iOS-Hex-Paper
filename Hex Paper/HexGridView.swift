@@ -57,8 +57,8 @@ struct HexGrid {
         var accumulatedEdges = Array<Edge>()
         for rowIndex in 0..<rows  {
             for columnIndex in 0..<columns {
-                let vertexRow = HexGrid.centerVertexRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
-                let vertexColumn = HexGrid.centerVertexColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
+                let vertexRow = HexGrid.centerPointRowForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
+                let vertexColumn = HexGrid.centerPointColumnForHexAt(rowIndex: rowIndex, columnIndex: columnIndex)
                 accumulatedEdges.append(contentsOf: HexGrid.edgesForHexWith(centerVertexRow: vertexRow,
                                                                             centerVertexColumn: vertexColumn,
                                                                             with: lattice))
@@ -82,7 +82,7 @@ struct HexGrid {
         
     }
     
-    private static func centerVertexRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
+    private static func centerPointRowForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
         var vertexRow: Int
         if columnIndex % 2 == 0 {
             vertexRow = 1 + 2 * rowIndex
@@ -92,7 +92,7 @@ struct HexGrid {
         return vertexRow
     }
     
-    private static func centerVertexColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
+    private static func centerPointColumnForHexAt(rowIndex: Int, columnIndex: Int) -> Int {
         var vertexColumn: Int
         if columnIndex % 2 == 0 {
             vertexColumn = 1 + 3 * columnIndex / 2
