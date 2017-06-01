@@ -118,13 +118,13 @@ struct HexGrid {
         let bottomRightVertex = lattice.pointAt(row: centerPointRow + 1, column: centerPointColumn + columnOffset)
         let rightVertex = lattice.pointAt(row: centerPointRow, column: centerPointColumn + 1)
         
-        return Set( [Edge(leftVertex, topLeftVertex),
-                     Edge(topLeftVertex, topRightVertex),
-                     Edge(topRightVertex, rightVertex),
-                     Edge(leftVertex, bottomLeftVertex),
-                     Edge(bottomLeftVertex, bottomRightVertex),
-                     Edge(bottomRightVertex, rightVertex),
-                     ])
+        return Set([Edge(leftVertex, topLeftVertex),
+                    Edge(topLeftVertex, topRightVertex),
+                    Edge(topRightVertex, rightVertex),
+                    Edge(leftVertex, bottomLeftVertex),
+                    Edge(bottomLeftVertex, bottomRightVertex),
+                    Edge(bottomRightVertex, rightVertex)
+                    ])
     }
 }
 
@@ -132,7 +132,7 @@ struct HexGrid {
 class HexGridView: UIView {
     
     @IBInspectable var hexRadius: CGFloat = 10.0
-    @IBInspectable var gridColor: UIColor = UIColor.gray
+    @IBInspectable var gridColor: UIColor = .gray
     
     override func draw(_ rect: CGRect) {
         let hexGrid = HexGrid(width: Double(self.bounds.size.width),
