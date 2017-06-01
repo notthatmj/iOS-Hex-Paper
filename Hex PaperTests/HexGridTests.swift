@@ -1,0 +1,361 @@
+//
+//  HexGridTests.swift
+//  Hex Paper
+//
+//  Created by Michael Johnson on 5/16/17.
+//  Copyright © 2017 Michael Johnson. All rights reserved.
+//
+
+import XCTest
+@testable import Hex_Paper
+
+class HexGridTests: XCTestCase {
+    
+    func testHexGridWithSingleHex() {
+        let hexRadius = 10.0
+        let SUT = HexGrid(rows: 1, columns: 1, hexRadius: hexRadius)
+        let rowHeight = sin(Double.pi / 3) * hexRadius
+        
+        XCTAssertEqual(SUT.edges.count, 6)
+        let leftPoint = CGPoint(x: 0, y: rowHeight)
+        let topLeftPoint = CGPoint(x: 0.5*hexRadius, y: 0)
+        let topLeftEdge = Edge(leftPoint, topLeftPoint)
+        XCTAssert(SUT.edges.contains(topLeftEdge))
+        
+        let topRightPoint = CGPoint(x: 1.5*hexRadius, y: 0)
+        let topEdge = Edge(topLeftPoint, topRightPoint)
+        XCTAssert(SUT.edges.contains(topEdge))
+        
+        let rightPoint = CGPoint(x: 2*hexRadius, y: rowHeight)
+        let topRightEdge = Edge(topRightPoint, rightPoint)
+        XCTAssert(SUT.edges.contains(topRightEdge))
+        
+        let bottomLeftPoint = CGPoint(x: 0.5*hexRadius, y: 2*rowHeight)
+        let bottomLeftEdge = Edge(leftPoint, bottomLeftPoint)
+        XCTAssert(SUT.edges.contains(bottomLeftEdge))
+        
+        let bottomRightPoint = CGPoint(x: 1.5*hexRadius, y: 2*rowHeight)
+        let bottomEdge = Edge(bottomLeftPoint, bottomRightPoint)
+        XCTAssert(SUT.edges.contains(bottomEdge))
+        
+        let bottomRightEdge = Edge(bottomRightPoint, rightPoint)
+        XCTAssert(SUT.edges.contains(bottomRightEdge))
+    }
+    
+    func test1by2HexGrid() {
+        let hexRadius = 10.0
+        let SUT = HexGrid(rows: 1, columns: 2, hexRadius: hexRadius)
+        let rowHeight = sin(Double.pi / 3) * hexRadius
+        
+        let p1 = CGPoint(x: 0.5 * hexRadius, y:0 )
+        let p2 = CGPoint(x: 1.5 * hexRadius, y:0 )
+        let p3 = CGPoint(x: 0, y: rowHeight)
+        let p4 = CGPoint(x: 2 * hexRadius, y: rowHeight)
+        let p5 = CGPoint(x: 3 * hexRadius, y: rowHeight)
+        let p6 = CGPoint(x: 0.5 * hexRadius, y: 2 * rowHeight)
+        let p7 = CGPoint(x: 1.5 * hexRadius, y: 2 * rowHeight)
+        let p8 = CGPoint(x: 3.5 * hexRadius, y: 2 * rowHeight)
+        let p9 = CGPoint(x: 2 * hexRadius, y: 3 * rowHeight)
+        let p10 = CGPoint(x: 3 * hexRadius, y: 3 * rowHeight)
+
+        let e1 = Edge(p3, p1)
+        let e2 = Edge(p1, p2)
+        let e3 = Edge(p2, p4)
+        let e4 = Edge(p4, p5)
+        let e5 = Edge(p3, p6)
+        let e6 = Edge(p6, p7)
+        let e7 = Edge(p7, p4)
+        let e8 = Edge(p5, p8)
+        let e9 = Edge(p7, p9)
+        let e10 = Edge(p9, p10)
+        let e11 = Edge(p10, p8)
+        
+        XCTAssertEqual(SUT.edges.count, 11)
+        XCTAssert(SUT.edges.contains(e1))
+        XCTAssert(SUT.edges.contains(e2))
+        XCTAssert(SUT.edges.contains(e3))
+        XCTAssert(SUT.edges.contains(e4))
+        XCTAssert(SUT.edges.contains(e5))
+        XCTAssert(SUT.edges.contains(e6))
+        XCTAssert(SUT.edges.contains(e7))
+        XCTAssert(SUT.edges.contains(e8))
+        XCTAssert(SUT.edges.contains(e9))
+        XCTAssert(SUT.edges.contains(e10))
+        XCTAssert(SUT.edges.contains(e11))
+    }
+    
+    func test2by2HexGrid() {
+        let hexRadius = 10.0
+        let SUT = HexGrid(rows: 2, columns: 2, hexRadius: hexRadius)
+        let rowHeight = sin(Double.pi / 3) * hexRadius
+        
+        let p1 = CGPoint(x: 0.5 * hexRadius, y:0 )
+        let p2 = CGPoint(x: 1.5 * hexRadius, y:0 )
+
+        let p5 = CGPoint(x: 0, y: rowHeight)
+        let p6 = CGPoint(x: 2 * hexRadius, y: rowHeight)
+        let p7 = CGPoint(x: 3 * hexRadius, y: rowHeight)
+        let p10 = CGPoint(x: 0.5 * hexRadius, y: 2 * rowHeight)
+        let p11 = CGPoint(x: 1.5 * hexRadius, y: 2 * rowHeight)
+        let p12 = CGPoint(x: 3.5 * hexRadius, y: 2 * rowHeight)
+        let p15 = CGPoint(x: 0, y: 3 * rowHeight)
+        let p16 = CGPoint(x: 2 * hexRadius, y: 3 * rowHeight)
+        let p17 = CGPoint(x: 3.0 * hexRadius, y: 3 * rowHeight)
+        let p20 = CGPoint(x: 0.5 * hexRadius, y: 4 * rowHeight)
+        let p21 = CGPoint(x: 1.5 * hexRadius, y: 4 * rowHeight)
+        let p22 = CGPoint(x: 3.5 * hexRadius, y: 4 * rowHeight)
+        let p26 = CGPoint(x: 2.0 * hexRadius, y: 5 * rowHeight)
+        
+        let p27 = CGPoint(x: 3.0 * hexRadius, y: 5 * rowHeight)
+        let e1 = Edge(p5, p1)
+        let e2 = Edge(p1, p2)
+        let e3 = Edge(p2, p6)
+        let e4 = Edge(p6, p7)
+        
+        let e9 = Edge(p5, p10)
+        let e10 = Edge(p10, p11)
+        let e11 = Edge(p11, p6)
+        let e12 = Edge(p7, p12)
+        
+        let e16 = Edge(p15, p10)
+        let e17 = Edge(p11, p16)
+        let e18 = Edge(p16, p17)
+        let e19 = Edge(p17, p12)
+        
+        let e23 = Edge(p15, p20)
+        let e24 = Edge(p20, p21)
+        let e25 = Edge(p21, p16)
+        let e26 = Edge(p17, p22)
+        
+        let e31 = Edge(p21, p26)
+        let e32 = Edge(p26, p27)
+        let e33 = Edge(p27, p22)
+        
+        XCTAssertEqual(SUT.edges.count, 19)
+        XCTAssert(SUT.edges.contains(e1))
+        XCTAssert(SUT.edges.contains(e2))
+        XCTAssert(SUT.edges.contains(e3))
+        XCTAssert(SUT.edges.contains(e4))
+        XCTAssert(SUT.edges.contains(e9))
+        XCTAssert(SUT.edges.contains(e10))
+        XCTAssert(SUT.edges.contains(e11))
+        XCTAssert(SUT.edges.contains(e12))
+        XCTAssert(SUT.edges.contains(e16))
+        XCTAssert(SUT.edges.contains(e17))
+        XCTAssert(SUT.edges.contains(e18))
+        XCTAssert(SUT.edges.contains(e19))
+        XCTAssert(SUT.edges.contains(e23))
+        XCTAssert(SUT.edges.contains(e24))
+        XCTAssert(SUT.edges.contains(e25))
+        XCTAssert(SUT.edges.contains(e26))
+        XCTAssert(SUT.edges.contains(e31))
+        XCTAssert(SUT.edges.contains(e32))
+        XCTAssert(SUT.edges.contains(e33))
+    }
+    
+    func test4by4HexGrid() {
+        let hexRadius = 10.0
+        let SUT = HexGrid(rows: 4, columns: 4, hexRadius: hexRadius)
+        let rowHeight = sin(Double.pi / 3) * hexRadius
+        
+        let p1 = CGPoint(x: 0.5 * hexRadius, y:0)
+        let p2 = CGPoint(x: 1.5 * hexRadius, y:0)
+        let p3 = CGPoint(x: 3.5 * hexRadius, y:0)
+        let p4 = CGPoint(x: 4.5 * hexRadius, y:0)
+        let p5 = CGPoint(x: 0, y: rowHeight)
+        let p6 = CGPoint(x: 2 * hexRadius, y: rowHeight)
+        let p7 = CGPoint(x: 3 * hexRadius, y: rowHeight)
+        let p8 = CGPoint(x: 5 * hexRadius, y: rowHeight)
+        let p9 = CGPoint(x: 6 * hexRadius, y: rowHeight)
+        let p10 = CGPoint(x: 0.5 * hexRadius, y: 2 * rowHeight)
+        let p11 = CGPoint(x: 1.5 * hexRadius, y: 2 * rowHeight)
+        let p12 = CGPoint(x: 3.5 * hexRadius, y: 2 * rowHeight)
+        let p13 = CGPoint(x: 4.5 * hexRadius, y: 2 * rowHeight)
+        let p14 = CGPoint(x: 6.5 * hexRadius, y: 2 * rowHeight)
+        let p15 = CGPoint(x: 0, y: 3 * rowHeight)
+        let p16 = CGPoint(x: 2 * hexRadius, y: 3 * rowHeight)
+        let p17 = CGPoint(x: 3.0 * hexRadius, y: 3 * rowHeight)
+        let p18 = CGPoint(x: 5.0 * hexRadius, y: 3 * rowHeight)
+        let p19 = CGPoint(x: 6.0 * hexRadius, y: 3 * rowHeight)
+        let p20 = CGPoint(x: 0.5 * hexRadius, y: 4 * rowHeight)
+        let p21 = CGPoint(x: 1.5 * hexRadius, y: 4 * rowHeight)
+        let p22 = CGPoint(x: 3.5 * hexRadius, y: 4 * rowHeight)
+        let p23 = CGPoint(x: 4.5 * hexRadius, y: 4 * rowHeight)
+        let p24 = CGPoint(x: 6.5 * hexRadius, y: 4 * rowHeight)
+        let p25 = CGPoint(x: 0, y: 5 * rowHeight)
+        let p26 = CGPoint(x: 2.0 * hexRadius, y: 5 * rowHeight)
+        let p27 = CGPoint(x: 3.0 * hexRadius, y: 5 * rowHeight)
+        let p28 = CGPoint(x: 5.0 * hexRadius, y: 5 * rowHeight)
+        let p29 = CGPoint(x: 6.0 * hexRadius, y: 5 * rowHeight)
+        let p30 = CGPoint(x: 0.5 * hexRadius, y: 6 * rowHeight)
+        let p31 = CGPoint(x: 1.5 * hexRadius, y: 6 * rowHeight)
+        let p32 = CGPoint(x: 3.5 * hexRadius, y: 6 * rowHeight)
+        let p33 = CGPoint(x: 4.5 * hexRadius, y: 6 * rowHeight)
+        let p34 = CGPoint(x: 6.5 * hexRadius, y: 6 * rowHeight)
+        let p35 = CGPoint(x: 0, y: 7 * rowHeight)
+        let p36 = CGPoint(x: 2 * hexRadius, y: 7 * rowHeight)
+        let p37 = CGPoint(x: 3 * hexRadius, y: 7 * rowHeight)
+        let p38 = CGPoint(x: 5 * hexRadius, y: 7 * rowHeight)
+        let p39 = CGPoint(x: 6 * hexRadius, y: 7 * rowHeight)
+        let p40 = CGPoint(x: 0.5 * hexRadius, y: 8 * rowHeight)
+        let p41 = CGPoint(x: 1.5 * hexRadius, y: 8 * rowHeight)
+        let p42 = CGPoint(x: 3.5 * hexRadius, y: 8 * rowHeight)
+        let p43 = CGPoint(x: 4.5 * hexRadius, y: 8 * rowHeight)
+        let p44 = CGPoint(x: 6.5 * hexRadius, y: 8 * rowHeight)
+        let p45 = CGPoint(x: 2 * hexRadius, y: 9 * rowHeight)
+        let p46 = CGPoint(x: 3 * hexRadius, y: 9 * rowHeight)
+        let p47 = CGPoint(x: 5 * hexRadius, y: 9 * rowHeight)
+        let p48 = CGPoint(x: 6 * hexRadius, y: 9 * rowHeight)
+        
+        let e1 = Edge(p5, p1)
+        let e2 = Edge(p1, p2)
+        let e3 = Edge(p2, p6)
+        let e4 = Edge(p6, p7)
+        let e5 = Edge(p7, p3)
+        let e6 = Edge(p3, p4)
+        let e7 = Edge(p4, p8)
+        let e8 = Edge(p8, p9)
+        
+        let e9 = Edge(p5, p10)
+        let e10 = Edge(p10, p11)
+        let e11 = Edge(p11, p6)
+        let e12 = Edge(p7, p12)
+        let e13 = Edge(p12, p13)
+        let e14 = Edge(p13, p8)
+        let e15 = Edge(p9, p14)
+        
+        let e16 = Edge(p15, p10)
+        let e17 = Edge(p11, p16)
+        let e18 = Edge(p16, p17)
+        let e19 = Edge(p17, p12)
+        let e20 = Edge(p13, p18)
+        let e21 = Edge(p18, p19)
+        let e22 = Edge(p19, p14)
+                       
+        let e23 = Edge(p15, p20)
+        let e24 = Edge(p20, p21)
+        let e25 = Edge(p21, p16)
+        let e26 = Edge(p17, p22)
+        let e27 = Edge(p22, p23)
+        let e28 = Edge(p23, p18)
+        let e29 = Edge(p19, p24)
+        let e30 = Edge(p25, p20)
+        let e31 = Edge(p21, p26)
+        let e32 = Edge(p26, p27)
+        let e33 = Edge(p27, p22)
+        let e34 = Edge(p23, p28)
+        let e35 = Edge(p28, p29)
+        let e36 = Edge(p29, p24)
+        
+        let e37 = Edge(p25, p30)
+        let e38 = Edge(p30, p31)
+        let e39 = Edge(p31, p26)
+        let e40 = Edge(p27, p32)
+        let e41 = Edge(p32, p33)
+        let e42 = Edge(p33, p28)
+        let e43 = Edge(p29, p34)
+        
+        let e44 = Edge(p35, p30)
+        let e45 = Edge(p31, p36)
+        let e46 = Edge(p36, p37)
+        let e47 = Edge(p37, p32)
+        let e48 = Edge(p33, p38)
+        let e49 = Edge(p38, p39)
+        let e50 = Edge(p39, p34)
+        let e51 = Edge(p35, p40)
+        let e52 = Edge(p40, p41)
+        let e53 = Edge(p41, p36)
+        let e54 = Edge(p37, p42)
+        let e55 = Edge(p42, p43)
+        let e56 = Edge(p43, p38)
+        let e57 = Edge(p39, p44)
+        
+        let e58 = Edge(p41, p45)
+        let e59 = Edge(p45, p46)
+        let e60 = Edge(p46, p42)
+        let e61 = Edge(p43, p47)
+        let e62 = Edge(p47, p48)
+        let e63 = Edge(p48, p44)
+        
+        XCTAssertEqual(SUT.edges.count, 63)
+        XCTAssert(SUT.edges.contains(e1))
+        XCTAssert(SUT.edges.contains(e2))
+        XCTAssert(SUT.edges.contains(e3))
+        XCTAssert(SUT.edges.contains(e4))
+        XCTAssert(SUT.edges.contains(e5))
+        XCTAssert(SUT.edges.contains(e6))
+        XCTAssert(SUT.edges.contains(e7))
+        XCTAssert(SUT.edges.contains(e8))
+        XCTAssert(SUT.edges.contains(e9))
+        XCTAssert(SUT.edges.contains(e10))
+        XCTAssert(SUT.edges.contains(e11))
+        XCTAssert(SUT.edges.contains(e12))
+        XCTAssert(SUT.edges.contains(e13))
+        XCTAssert(SUT.edges.contains(e14))
+        XCTAssert(SUT.edges.contains(e15))
+        XCTAssert(SUT.edges.contains(e16))
+        XCTAssert(SUT.edges.contains(e17))
+        XCTAssert(SUT.edges.contains(e18))
+        XCTAssert(SUT.edges.contains(e19))
+        XCTAssert(SUT.edges.contains(e20))
+        XCTAssert(SUT.edges.contains(e21))
+        XCTAssert(SUT.edges.contains(e22))
+        XCTAssert(SUT.edges.contains(e23))
+        XCTAssert(SUT.edges.contains(e24))
+        XCTAssert(SUT.edges.contains(e25))
+        XCTAssert(SUT.edges.contains(e26))
+        XCTAssert(SUT.edges.contains(e27))
+        XCTAssert(SUT.edges.contains(e28))
+        XCTAssert(SUT.edges.contains(e29))
+        XCTAssert(SUT.edges.contains(e30))
+        XCTAssert(SUT.edges.contains(e31))
+        XCTAssert(SUT.edges.contains(e32))
+        XCTAssert(SUT.edges.contains(e33))
+        XCTAssert(SUT.edges.contains(e34))
+        XCTAssert(SUT.edges.contains(e35))
+        XCTAssert(SUT.edges.contains(e36))
+        XCTAssert(SUT.edges.contains(e37))
+        XCTAssert(SUT.edges.contains(e38))
+        XCTAssert(SUT.edges.contains(e39))
+        XCTAssert(SUT.edges.contains(e40))
+        XCTAssert(SUT.edges.contains(e41))
+        XCTAssert(SUT.edges.contains(e42))
+        XCTAssert(SUT.edges.contains(e43))
+        XCTAssert(SUT.edges.contains(e44))
+        XCTAssert(SUT.edges.contains(e45))
+        XCTAssert(SUT.edges.contains(e46))
+        XCTAssert(SUT.edges.contains(e47))
+        XCTAssert(SUT.edges.contains(e48))
+        XCTAssert(SUT.edges.contains(e49))
+        XCTAssert(SUT.edges.contains(e50))
+        XCTAssert(SUT.edges.contains(e51))
+        XCTAssert(SUT.edges.contains(e52))
+        XCTAssert(SUT.edges.contains(e53))
+        XCTAssert(SUT.edges.contains(e54))
+        XCTAssert(SUT.edges.contains(e55))
+        XCTAssert(SUT.edges.contains(e56))
+        XCTAssert(SUT.edges.contains(e57))
+        XCTAssert(SUT.edges.contains(e58))
+        XCTAssert(SUT.edges.contains(e59))
+        XCTAssert(SUT.edges.contains(e60))
+        XCTAssert(SUT.edges.contains(e61))
+        XCTAssert(SUT.edges.contains(e62))
+        XCTAssert(SUT.edges.contains(e63))        
+    }
+    
+    func testInitWithWidthAndHeight() {
+        let SUT = HexGrid(width: 10, height: 10, hexRadius: 20)
+        
+        let expectedEdges = HexGrid(rows: 1, columns: 1, hexRadius: 20).edges
+        
+        XCTAssertEqual(SUT.edges, expectedEdges)
+    }
+    
+    func testInitWithWidthAndHeight2() {
+        let SUT = HexGrid(width: 50, height: 40, hexRadius: 20)
+        
+        let expectedEdges = HexGrid(rows: 2, columns: 2, hexRadius: 20).edges
+        
+        XCTAssertEqual(SUT.edges, expectedEdges)
+    }
+}

@@ -33,15 +33,15 @@ class HexGridViewController: UIViewController {
     }
 
     func adjustZoomScaleToFit() {
-        let intrinsicSize = hexGridView.intrinsicContentSize
+        let boundsSize = hexGridView.bounds.size
         
-        let intrinsicWidth = intrinsicSize.width
+        let boundsWidth = boundsSize.width
         let scrollViewWidth = scrollView.frame.size.width
-        let widthZoomScale = scrollViewWidth / intrinsicWidth
+        let widthZoomScale = scrollViewWidth / boundsWidth
         
-        let intrinsicHeight = intrinsicSize.height
+        let boundsHeight = boundsSize.height
         let scrollViewHeight = scrollView.frame.size.height
-        let heightZoomScale = scrollViewHeight / intrinsicHeight
+        let heightZoomScale = scrollViewHeight / boundsHeight
         
         scrollView.zoomScale = min(heightZoomScale, widthZoomScale)
     }
